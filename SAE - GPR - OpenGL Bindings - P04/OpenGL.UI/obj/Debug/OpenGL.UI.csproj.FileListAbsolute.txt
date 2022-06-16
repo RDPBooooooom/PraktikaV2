@@ -1,0 +1,36 @@
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Graphics Programming\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.csprojAssemblyReference.cache
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Graphics Programming\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.csproj.CoreCompileInputs.cache
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Graphics Programming\SAE - GPR - OpenGL Bindings\OpenGL.UI\bin\Debug\OpenGL.dll.config
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Graphics Programming\SAE - GPR - OpenGL Bindings\OpenGL.UI\bin\Debug\OpenGL.UI.dll
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Graphics Programming\SAE - GPR - OpenGL Bindings\OpenGL.UI\bin\Debug\OpenGL.UI.pdb
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Graphics Programming\SAE - GPR - OpenGL Bindings\OpenGL.UI\bin\Debug\OpenGL.dll
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Graphics Programming\SAE - GPR - OpenGL Bindings\OpenGL.UI\bin\Debug\OpenGL.Platform.dll
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Graphics Programming\SAE - GPR - OpenGL Bindings\OpenGL.UI\bin\Debug\OpenGL.Platform.pdb
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Graphics Programming\SAE - GPR - OpenGL Bindings\OpenGL.UI\bin\Debug\OpenGL.pdb
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Graphics Programming\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.csproj.CopyComplete
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Graphics Programming\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.dll
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Graphics Programming\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.pdb
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Student Templates\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\bin\Debug\OpenGL.dll.config
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Student Templates\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\bin\Debug\OpenGL.UI.dll
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Student Templates\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\bin\Debug\OpenGL.UI.pdb
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Student Templates\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\bin\Debug\OpenGL.dll
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Student Templates\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\bin\Debug\OpenGL.Platform.dll
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Student Templates\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\bin\Debug\OpenGL.Platform.pdb
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Student Templates\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\bin\Debug\OpenGL.pdb
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Student Templates\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.csprojAssemblyReference.cache
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Student Templates\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.csproj.CoreCompileInputs.cache
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Student Templates\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.csproj.CopyComplete
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Student Templates\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.dll
+D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Student Templates\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.pdb
+C:\git\Praktika\SAE - GPR - OpenGL Bindings - P04\OpenGL.UI\bin\Debug\OpenGL.dll.config
+C:\git\Praktika\SAE - GPR - OpenGL Bindings - P04\OpenGL.UI\bin\Debug\OpenGL.UI.dll
+C:\git\Praktika\SAE - GPR - OpenGL Bindings - P04\OpenGL.UI\bin\Debug\OpenGL.UI.pdb
+C:\git\Praktika\SAE - GPR - OpenGL Bindings - P04\OpenGL.UI\bin\Debug\OpenGL.dll
+C:\git\Praktika\SAE - GPR - OpenGL Bindings - P04\OpenGL.UI\bin\Debug\OpenGL.Platform.dll
+C:\git\Praktika\SAE - GPR - OpenGL Bindings - P04\OpenGL.UI\bin\Debug\OpenGL.Platform.pdb
+C:\git\Praktika\SAE - GPR - OpenGL Bindings - P04\OpenGL.UI\bin\Debug\OpenGL.pdb
+C:\git\Praktika\SAE - GPR - OpenGL Bindings - P04\OpenGL.UI\obj\Debug\OpenGL.UI.csproj.CoreCompileInputs.cache
+C:\git\Praktika\SAE - GPR - OpenGL Bindings - P04\OpenGL.UI\obj\Debug\OpenGL.UI.csproj.CopyComplete
+C:\git\Praktika\SAE - GPR - OpenGL Bindings - P04\OpenGL.UI\obj\Debug\OpenGL.UI.dll
+C:\git\Praktika\SAE - GPR - OpenGL Bindings - P04\OpenGL.UI\obj\Debug\OpenGL.UI.pdb
+C:\git\Praktika\SAE - GPR - OpenGL Bindings - P04\OpenGL.UI\obj\Debug\OpenGL.UI.csproj.AssemblyReference.cache

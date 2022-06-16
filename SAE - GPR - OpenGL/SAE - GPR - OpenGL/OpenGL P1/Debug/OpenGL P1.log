@@ -1,0 +1,4 @@
+﻿  glad.c
+  main.cpp
+LINK : warning LNK4098: Standardbibliothek "MSVCRT" steht in Konflikt mit anderen Bibliotheken; /NODEFAULTLIB:Bibliothek verwenden.
+  OpenGL P1.vcxproj -> D:\Dropbox (w.wittwer ag)\Extern\SAE\GPR5300\Projects\Graphics Programming\SAE - GPR - OpenGL\Debug\OpenGL P1.exe
