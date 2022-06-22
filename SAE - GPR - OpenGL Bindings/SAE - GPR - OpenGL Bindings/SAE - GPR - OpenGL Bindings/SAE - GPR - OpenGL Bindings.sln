@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGL.Platform", "OpenGL.P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGL.Game", "OpenGL.Game\OpenGL.Game.csproj", "{6BCA95AD-2878-46C4-8C75-24BA51B2E190}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAE.OpenGL.P5", "SAE.OpenGL.P5\SAE.OpenGL.P5.csproj", "{AA1A6C88-B8CC-45F9-9B75-80F76E91E80A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
