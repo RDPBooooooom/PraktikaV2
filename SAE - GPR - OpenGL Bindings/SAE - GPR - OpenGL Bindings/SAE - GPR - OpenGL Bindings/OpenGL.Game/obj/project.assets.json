@@ -1,0 +1,122 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6": {
+      "OpenGL/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/OpenGL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/OpenGL.dll": {}
+        }
+      },
+      "OpenGL.Platform/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "OpenGL": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/OpenGL.Platform.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/OpenGL.Platform.dll": {}
+        }
+      },
+      "OpenGL.UI/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "OpenGL": "1.0.0",
+          "OpenGL.Platform": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/OpenGL.UI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/OpenGL.UI.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "OpenGL/1.0.0": {
+      "type": "project",
+      "path": "../OpenGL/OpenGL.csproj",
+      "msbuildProject": "../OpenGL/OpenGL.csproj"
+    },
+    "OpenGL.Platform/1.0.0": {
+      "type": "project",
+      "path": "../OpenGL.Platform/OpenGL.Platform.csproj",
+      "msbuildProject": "../OpenGL.Platform/OpenGL.Platform.csproj"
+    },
+    "OpenGL.UI/1.0.0": {
+      "type": "project",
+      "path": "../OpenGL.UI/OpenGL.UI.csproj",
+      "msbuildProject": "../OpenGL.UI/OpenGL.UI.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6": [
+      "OpenGL >= 1.0.0",
+      "OpenGL.Platform >= 1.0.0",
+      "OpenGL.UI >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\marvi\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\git\\PraktikaV2\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\OpenGL.Game\\OpenGL.Game.csproj",
+      "projectName": "OpenGL.Game",
+      "projectPath": "C:\\git\\PraktikaV2\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\OpenGL.Game\\OpenGL.Game.csproj",
+      "packagesPath": "C:\\Users\\marvi\\.nuget\\packages\\",
+      "outputPath": "C:\\git\\PraktikaV2\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\OpenGL.Game\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\marvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net46"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net46": {
+          "targetAlias": "net46",
+          "projectReferences": {
+            "C:\\git\\PraktikaV2\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\OpenGL.Platform\\OpenGL.Platform.csproj": {
+              "projectPath": "C:\\git\\PraktikaV2\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\OpenGL.Platform\\OpenGL.Platform.csproj"
+            },
+            "C:\\git\\PraktikaV2\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\OpenGL.UI\\OpenGL.UI.csproj": {
+              "projectPath": "C:\\git\\PraktikaV2\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\OpenGL.UI\\OpenGL.UI.csproj"
+            },
+            "C:\\git\\PraktikaV2\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\OpenGL\\OpenGL.csproj": {
+              "projectPath": "C:\\git\\PraktikaV2\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\OpenGL\\OpenGL.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net46": {
+        "targetAlias": "net46",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
