@@ -4,7 +4,7 @@ using OpenGL.Game;
 using OpenGL.Mathematics;
 using OpenGL.Platform;
 
-namespace SAE.OpenGL.P4
+namespace SAE.OpenGL.P5
 {
     internal static class Program
     {
@@ -14,14 +14,14 @@ namespace SAE.OpenGL.P4
         //TODO: Create game instance
         private static Game game;
         private static Camera camera;
-
+        
         static void Main()
         {
             game = new Game();
             camera = new Camera();
 
             Time.Initialize();
-            Window.CreateWindow("OpenGL P4", 800, 600);
+            Window.CreateWindow("OpenGL P5", 800, 600);
 
             // add a reshape callback to update the UI
             Window.OnReshapeCallbacks.Add(OnResize);
@@ -35,7 +35,7 @@ namespace SAE.OpenGL.P4
 
             // Load shader files
             Material material = Material.Create("shaders\\vert.vs", "shaders\\frag.fs");
-            material["color"].SetValue(new Vector3(1, 0, 1));
+            material["color"].SetValue(new Vector3(1, 1, 1));
 
             SwapPolygonModeFill();
 

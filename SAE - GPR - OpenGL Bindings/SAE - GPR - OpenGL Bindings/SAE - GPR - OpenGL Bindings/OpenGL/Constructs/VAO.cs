@@ -565,9 +565,9 @@ namespace OpenGL
 
                 // According to OGL spec then, if there is no location for an attribute, -1 is returned.
                 // The same error representation is used here.
-
+                
                 var p = program[vbos[i].Name];
-
+                
                 int loc = p?.Location ?? -1;
                 if (loc == -1) throw new Exception(string.Format("Shader did not contain '{0}'.", vbos[i].Name));
 

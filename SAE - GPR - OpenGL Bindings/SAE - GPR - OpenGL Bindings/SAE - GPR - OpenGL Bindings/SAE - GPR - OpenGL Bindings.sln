@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2047
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Praktika", "Praktika", "{64724DEA-E024-46C1-AC71-85D96D3C0BFB}"
 EndProject
@@ -15,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGL", "OpenGL\OpenGL.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGL.Platform", "OpenGL.Platform\OpenGL.Platform.csproj", "{32EDDFDA-D6CA-4459-AFF0-6170280B824F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGL.Game", "OpenGL.Game\OpenGL.Game.csproj", "{6BCA95AD-2878-46C4-8C75-24BA51B2E190}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGL.Game", "OpenGL.Game\OpenGL.Game.csproj", "{6BCA95AD-2878-46C4-8C75-24BA51B2E190}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAE.OpenGL.P5", "SAE.OpenGL.P5\SAE.OpenGL.P5.csproj", "{AA1A6C88-B8CC-45F9-9B75-80F76E91E80A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAE.OpenGL.P5", "SAE.OpenGL.P5\SAE.OpenGL.P5.csproj", "{E7BBC890-649F-40F6-8934-2DB86528D145}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +45,10 @@ Global
 		{6BCA95AD-2878-46C4-8C75-24BA51B2E190}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BCA95AD-2878-46C4-8C75-24BA51B2E190}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BCA95AD-2878-46C4-8C75-24BA51B2E190}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7BBC890-649F-40F6-8934-2DB86528D145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7BBC890-649F-40F6-8934-2DB86528D145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7BBC890-649F-40F6-8934-2DB86528D145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7BBC890-649F-40F6-8934-2DB86528D145}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +59,7 @@ Global
 		{4A3D3106-AFEC-4E04-9630-7A1A2D0C16DB} = {21848681-8C97-4853-A4F4-9C2418C50AA8}
 		{32EDDFDA-D6CA-4459-AFF0-6170280B824F} = {21848681-8C97-4853-A4F4-9C2418C50AA8}
 		{6BCA95AD-2878-46C4-8C75-24BA51B2E190} = {21848681-8C97-4853-A4F4-9C2418C50AA8}
+		{E7BBC890-649F-40F6-8934-2DB86528D145} = {64724DEA-E024-46C1-AC71-85D96D3C0BFB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA740FB3-3A04-4EF0-A390-D957FD6B6D5A}

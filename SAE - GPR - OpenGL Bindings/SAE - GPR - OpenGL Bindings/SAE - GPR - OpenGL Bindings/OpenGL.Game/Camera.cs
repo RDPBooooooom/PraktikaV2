@@ -11,7 +11,7 @@ namespace OpenGL.Game
 
         public Transform Transform { get; protected set; }
         public float MoveStepDistance { get; set; } = 2;
-        public float RotationStepAngle { get; set; } = 20;
+        public float RotationStepAngle { get; set; } = 60;
 
         #endregion
 

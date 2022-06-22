@@ -24,6 +24,14 @@
             0, 3, 1 // right
         };
 
+        public static Vector3[] ColorsPyramid =
+        {
+            new Vector3(1f, 1f, 1f),
+            new Vector3(1f, 0f, 0f),
+            new Vector3(0f, 1f, 0f),
+            new Vector3(0f, 0f, 1f)
+        };
+
         #endregion
 
         #region Real pyramid
@@ -50,6 +58,15 @@
             0, 3, 4,
             // Right
             3, 4, 2
+        };
+        
+        public static Vector3[] ColorsRealPyramid =
+        {
+            new Vector3(1f, 0f, 0f),
+            new Vector3(0f, 1f, 0f),
+            new Vector3(0f, 0f, 1f),
+            new Vector3(1f, 0f, 0f),
+            new Vector3(1f, 1f, 1f)
         };
 
         #endregion
@@ -89,6 +106,40 @@
             4, 6, 5,
             5, 6, 7
         };
+        
+        public static Vector3[] ColorsCube =
+        {
+            //One Side
+            new Vector3(1f, 0f, 0f),
+            new Vector3(0f, 1f, 0f),
+            new Vector3(0f, 0f, 1f),
+            new Vector3(1f, 1f, 1f),
+            //One Side
+            new Vector3(1f, 0f, 0f),
+            new Vector3(0f, 1f, 0f),
+            new Vector3(0f, 0f, 1f),
+            new Vector3(1f, 1f, 1f),
+            //One Side
+            new Vector3(1f, 0f, 0f),
+            new Vector3(0f, 1f, 0f),
+            new Vector3(0f, 0f, 1f),
+            new Vector3(1f, 1f, 1f),
+            //One Side
+            new Vector3(1f, 0f, 0f),
+            new Vector3(0f, 1f, 0f),
+            new Vector3(0f, 0f, 1f),
+            new Vector3(1f, 1f, 1f),
+            //One Side
+            new Vector3(1f, 0f, 0f),
+            new Vector3(0f, 1f, 0f),
+            new Vector3(0f, 0f, 1f),
+            new Vector3(1f, 1f, 1f),
+            //One Side
+            new Vector3(1f, 0f, 0f),
+            new Vector3(0f, 1f, 0f),
+            new Vector3(0f, 0f, 1f),
+            new Vector3(1f, 1f, 1f),
+        };
 
         #endregion
 
@@ -108,6 +159,17 @@
             1, 3, 2
         };
 
+        
+        public static Vector3[] ColorsRectangle =
+        {
+            //One Side
+            new Vector3(1f, 0f, 0f),
+            new Vector3(0f, 1f, 0f),
+            new Vector3(0f, 0f, 1f),
+            new Vector3(1f, 1f, 1f),
+        };
+
+        
         #endregion
 
         #region Triangle
@@ -124,6 +186,13 @@
             0, 2, 1
         };
 
+        public static Vector3[] ColorsTriangle =
+        {
+            new Vector3(1f, 0f, 0f),
+            new Vector3(0f, 1f, 0f),
+            new Vector3(0f, 0f, 1f)
+        };
+        
         #endregion
     }
 }
