@@ -22,7 +22,7 @@ namespace SAE.OpenGL.P5
             camera = new Camera();
 
             Time.Initialize();
-            Window.CreateWindow("OpenGL P5", 800, 600);
+            Window.CreateWindow("OpenGL P6", 800, 600);
 
             // add a reshape callback to update the UI
             Window.OnReshapeCallbacks.Add(OnResize);

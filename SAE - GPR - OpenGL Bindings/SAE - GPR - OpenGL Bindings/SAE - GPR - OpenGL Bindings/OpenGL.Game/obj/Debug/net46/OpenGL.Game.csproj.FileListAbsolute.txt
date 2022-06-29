@@ -58,5 +58,4 @@ C:\git\PraktikaV2\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\SAE - 
 C:\git\PraktikaV2\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.Game\obj\Debug\net46\OpenGL.Game.csproj.CopyComplete
 C:\git\PraktikaV2\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.Game\obj\Debug\net46\OpenGL.Game.dll
 C:\git\PraktikaV2\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.Game\obj\Debug\net46\OpenGL.Game.pdb
-C:\git\PraktikaV2\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.Game\obj\Debug\net46\OpenGL.Game.csproj.AssemblyReference.cache
-C:\git\PraktikaV2\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.Game\obj\Debug\net46\OpenGL.Game.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\PraktikaV2\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.Game\obj\Debug\net46\OpenGL.Game.csprojAssemblyReference.cache
