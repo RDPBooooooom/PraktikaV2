@@ -10,8 +10,7 @@ namespace SAE.OpenGL.P4
     {
         private static int width = 800;
         private static int height = 600;
-
-        //TODO: Create game instance
+        
         private static Game game;
         private static Camera camera;
 
@@ -22,6 +21,7 @@ namespace SAE.OpenGL.P4
 
             Time.Initialize();
             Window.CreateWindow("OpenGL P4", 800, 600);
+            Window.SetScreenMode(new Compatibility.ScreenResolution(), true);
 
             // add a reshape callback to update the UI
             Window.OnReshapeCallbacks.Add(OnResize);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Windows.Forms;
 using OpenGL.Mathematics;
 using OpenGL.Platform;
 
@@ -21,7 +22,7 @@ namespace OpenGL.Game
         {
             Transform = new Transform();
             Move(new Vector3(0, 0, 1));
-            
+
             InitActions();
         }
 
@@ -48,6 +49,11 @@ namespace OpenGL.Game
 
             CreateRepeatInput('q', RotateLeft);
             CreateRepeatInput('e', RotateRight);
+
+            CreateRepeatInput('y', MoveUp);
+            CreateRepeatInput('c', MoveDown);
+
+            Input.MouseMove = new Event(Mouse);
         }
 
         public static void CreateRepeatInput(char key, Event.RepeatEvent method)
@@ -60,6 +66,12 @@ namespace OpenGL.Game
 
         #region Public Methods
 
+        public void Mouse(int lx, int ly, int x, int y)
+        {
+            Rotate(new Vector3(RotationStepAngle * (ly - y), 0f, 0f) * Time.DeltaTime);
+            //Rotate(new Vector3(0f, RotationStepAngle * (lx - x), 0f) * Time.DeltaTime);
+        }
+
         public void MoveForward(float dt)
         {
             Move(Transform.GetForward() * MoveStepDistance * dt);
@@ -67,7 +79,7 @@ namespace OpenGL.Game
 
         public void MoveBack(float dt)
         {
-            Move(Transform.GetForward() * -1  * MoveStepDistance * dt);
+            Move(Transform.GetForward() * -1 * MoveStepDistance * dt);
         }
 
         public void MoveLeft(float dt)
@@ -78,6 +90,16 @@ namespace OpenGL.Game
         public void MoveRight(float dt)
         {
             Move(Transform.GetRight() * MoveStepDistance * dt);
+        }
+
+        public void MoveUp(float dt)
+        {
+            Move(Transform.GetUp() * MoveStepDistance * dt);
+        }
+
+        public void MoveDown(float dt)
+        {
+            Move(Transform.GetUp() * -1 * MoveStepDistance * dt);
         }
 
         public void RotateLeft(float dt)

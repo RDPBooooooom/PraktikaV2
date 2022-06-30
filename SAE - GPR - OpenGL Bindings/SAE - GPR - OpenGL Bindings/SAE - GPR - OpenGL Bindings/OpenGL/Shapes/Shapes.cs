@@ -24,7 +24,7 @@
             0, 3, 1 // right
         };
 
-        public static Vector3[] ColorsPyramid =
+        public static readonly Vector3[] ColorsPyramid =
         {
             new Vector3(1f, 1f, 1f),
             new Vector3(1f, 0f, 0f),
@@ -59,8 +59,8 @@
             // Right
             3, 4, 2
         };
-        
-        public static Vector3[] ColorsRealPyramid =
+
+        public static readonly Vector3[] ColorsRealPyramid =
         {
             new Vector3(1f, 0f, 0f),
             new Vector3(0f, 1f, 0f),
@@ -106,8 +106,8 @@
             4, 6, 5,
             5, 6, 7
         };
-        
-        public static Vector3[] ColorsCube =
+
+        public static readonly Vector3[] ColorsCube =
         {
             //One Side
             new Vector3(1f, 0f, 0f),
@@ -139,6 +139,140 @@
             new Vector3(0f, 1f, 0f),
             new Vector3(0f, 0f, 1f),
             new Vector3(1f, 1f, 1f),
+        };
+
+        #endregion
+
+        #region Texture Cube
+
+        public static readonly Vector3[] VerticesTextureCube =
+        {
+            // front_top_Left 0
+            new Vector3(-0.5f, 0.5f, 0.0f), // 0
+            new Vector3(-0.5f, 0.5f, 0.0f), // 1
+            new Vector3(-0.5f, 0.5f, 0.0f), // 2
+            //front_top_right 1
+            new Vector3(0.5f, 0.5f, 0.0f), // 3
+            new Vector3(0.5f, 0.5f, 0.0f), // 4
+            new Vector3(0.5f, 0.5f, 0.0f), // 5
+            // front_bot_left 2
+            new Vector3(-0.5f, -0.5f, 0.0f), // 6
+            new Vector3(-0.5f, -0.5f, 0.0f), // 7
+            new Vector3(-0.5f, -0.5f, 0.0f), // 8
+            // front_bot_right 3
+            new Vector3(0.5f, -0.5f, 0.0f), // 9
+            new Vector3(0.5f, -0.5f, 0.0f), // 10
+            new Vector3(0.5f, -0.5f, 0.0f), // 11
+            // back_top_left 4
+            new Vector3(-0.5f, 0.5f, 1.0f), // 12
+            new Vector3(-0.5f, 0.5f, 1.0f), // 13
+            new Vector3(-0.5f, 0.5f, 1.0f), // 14
+            // back_top_right 5
+            new Vector3(0.5f, 0.5f, 1.0f), // 15
+            new Vector3(0.5f, 0.5f, 1.0f), // 16
+            new Vector3(0.5f, 0.5f, 1.0f), // 17
+            // back_bot_left 6
+            new Vector3(-0.5f, -0.5f, 1.0f), // 18 
+            new Vector3(-0.5f, -0.5f, 1.0f), // 19
+            new Vector3(-0.5f, -0.5f, 1.0f), // 20
+            // back_bot_right 7
+            new Vector3(0.5f, -0.5f, 1.0f), // 21 
+            new Vector3(0.5f, -0.5f, 1.0f), // 22
+            new Vector3(0.5f, -0.5f, 1.0f) // 23
+        };
+
+        public static readonly uint[] IndicesTextureCube =
+        {
+            // Front
+            6, 0, 9,
+            9, 0, 3,
+            // TOP
+            1, 12, 4,
+            4, 12, 15,
+            // BOT
+            18, 7, 21,
+            21, 7, 10,
+            // Right
+            22, 11, 16,
+            16, 11, 5,
+            // LEFT
+            13, 2, 19,
+            19, 2, 8,
+            // BACK
+            14, 20, 17,
+            17, 20, 23
+        };
+
+        public static readonly Vector3[] ColorsTextureCube =
+        {
+            // front_top_Left 0
+            new Vector3(1, 1, 1), // 0
+            new Vector3(1, 1, 1), // 1
+            new Vector3(1, 1, 1), // 2
+            //front_top_right 1
+            new Vector3(1, 1, 1), // 3
+            new Vector3(1, 1, 1), // 4
+            new Vector3(1, 1, 1), // 5
+            // front_bot_left 2
+            new Vector3(0, 0, 0), // 6
+            new Vector3(0, 0, 0), // 7
+            new Vector3(0, 0, 0), // 8
+            // front_bot_right 3
+            new Vector3(0, 0, 0), // 9
+            new Vector3(0, 0, 0), // 10
+            new Vector3(0, 0, 0), // 11
+            // back_top_left 4
+            new Vector3(1, 1, 1), // 12
+            new Vector3(1, 1, 1), // 13
+            new Vector3(1, 1, 1), // 14
+            // back_top_right 5
+            new Vector3(1, 1, 1), // 15
+            new Vector3(1, 1, 1), // 16
+            new Vector3(1, 1, 1), // 17
+            // back_bot_left 6
+            new Vector3(0, 0, 0), // 18 
+            new Vector3(0, 0, 0), // 19
+            new Vector3(0, 0, 0), // 20
+            // back_bot_right 7
+            new Vector3(0, 0, 0), // 21 
+            new Vector3(0, 0, 0), // 22
+            new Vector3(0, 0, 0) // 23
+        };
+
+        public static readonly Vector2[] UvTextureCube =
+        {
+            // front_top_Left 0
+            new Vector2(1f, 0f),
+            new Vector2(1f, 1f),
+            new Vector2(1f, 1f),
+            //front_top_right 1
+            new Vector2(1f, 1f),
+            new Vector2(1f, 0f),
+            new Vector2(1f, 0f),
+            // front_bot_left 2
+            new Vector2(0f, 0f),
+            new Vector2(1f, 0f),
+            new Vector2(0f, 1f),
+            // front_bot_right 3
+            new Vector2(0f, 1f),
+            new Vector2(1f, 1f),
+            new Vector2(0f, 0f),
+            // back_top_left 4
+            new Vector2(0f, 1f),
+            new Vector2(1f, 0f),
+            new Vector2(1f, 1f),
+            // back_top_right 5
+            new Vector2(0f, 0f),
+            new Vector2(1f, 1f),
+            new Vector2(1f, 0f),
+            // back_bot_left 6
+            new Vector2(0f, 0f),
+            new Vector2(0f, 0f),
+            new Vector2(0f, 1f),
+            // back_bot_right 7
+            new Vector2(0f, 1f),
+            new Vector2(0f, 1f),
+            new Vector2(0f, 0f),
         };
 
         #endregion
@@ -159,8 +293,8 @@
             1, 3, 2
         };
 
-        
-        public static Vector3[] ColorsRectangle =
+
+        public static readonly Vector3[] ColorsRectangle =
         {
             //One Side
             new Vector3(1f, 0f, 0f),
@@ -169,7 +303,6 @@
             new Vector3(1f, 1f, 1f),
         };
 
-        
         #endregion
 
         #region Triangle
@@ -186,13 +319,13 @@
             0, 2, 1
         };
 
-        public static Vector3[] ColorsTriangle =
+        public static readonly Vector3[] ColorsTriangle =
         {
             new Vector3(1f, 0f, 0f),
             new Vector3(0f, 1f, 0f),
             new Vector3(0f, 0f, 1f)
         };
-        
+
         #endregion
     }
 }

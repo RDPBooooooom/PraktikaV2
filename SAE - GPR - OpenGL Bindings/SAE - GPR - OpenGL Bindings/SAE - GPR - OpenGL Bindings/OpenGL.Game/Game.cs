@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
 
 namespace OpenGL.Game
 {
@@ -25,9 +25,10 @@ namespace OpenGL.Game
         /// <summary>
         /// Renders all <see cref="GameObject"/> in the <see cref="SceneGraph"/>
         /// </summary>
+        [Obsolete("Old")]
         public void Render()
         {
-            SceneGraph.ForEach(g => g.Renderer.Render());
+            //SceneGraph.ForEach(g => g.Renderer.Render());
         }
 
         /// <summary>

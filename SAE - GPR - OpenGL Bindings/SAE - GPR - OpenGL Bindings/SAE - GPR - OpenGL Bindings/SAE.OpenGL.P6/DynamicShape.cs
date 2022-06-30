@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using OpenGL;
+﻿using OpenGL;
 using OpenGL.Game;
 using OpenGL.Platform;
 using OpenGL.Shapes;
-using static OpenGL.GenericVAO;
 
-namespace SAE.OpenGL.P5
+namespace SAE.OpenGL.P6
 {
     public class DynamicShape : GameObject
     {
@@ -22,7 +20,7 @@ namespace SAE.OpenGL.P5
         {
             _mat = mat;
 
-            Renderer = new MeshRenderer(mat, GetVao(Shapes.VerticesCube, Shapes.IndicesCube, Shapes.ColorsCube));
+            Renderer = new MeshRenderer(mat, GetVao(Shapes.VerticesCube, Shapes.IndicesCube, Shapes.ColorsCube, _mat));
 
             RegisterShapeSwap();
         }
@@ -38,41 +36,29 @@ namespace SAE.OpenGL.P5
 
         private void SwapCube()
         {
-            Renderer.Geometry = GetVao(Shapes.VerticesCube, Shapes.IndicesCube, Shapes.ColorsCube);
+            Renderer.Geometry = GetVao(Shapes.VerticesCube, Shapes.IndicesCube, Shapes.ColorsCube, _mat);
         }
 
         private void SwapTriangle()
         {
-            Renderer.Geometry = GetVao(Shapes.VerticesTriangle, Shapes.IndicesTriangle, Shapes.ColorsTriangle);
+            Renderer.Geometry = GetVao(Shapes.VerticesTriangle, Shapes.IndicesTriangle, Shapes.ColorsTriangle, _mat);
         }
 
         private void SwapRect()
         {
-            Renderer.Geometry = GetVao(Shapes.VerticesRectangle, Shapes.IndicesRectangle, Shapes.ColorsRectangle);
+            Renderer.Geometry = GetVao(Shapes.VerticesRectangle, Shapes.IndicesRectangle, Shapes.ColorsRectangle, _mat);
         }
 
         private void SwapPyramid()
         {
-            Renderer.Geometry = GetVao(Shapes.VerticesPyramid, Shapes.IndicesPyramid, Shapes.ColorsPyramid);
+            Renderer.Geometry = GetVao(Shapes.VerticesPyramid, Shapes.IndicesPyramid, Shapes.ColorsPyramid, _mat);
         }
 
         private void SwapRealPyramid()
         {
-            Renderer.Geometry = GetVao(Shapes.VerticesRealPyramid, Shapes.IndicesRealPyramid, Shapes.ColorsRealPyramid);
+            Renderer.Geometry = GetVao(Shapes.VerticesRealPyramid, Shapes.IndicesRealPyramid, Shapes.ColorsRealPyramid, _mat);
         }
 
-        private VAO GetVao(Vector3[] vertices, uint[] indices, Vector3[] colors)
-        {
-            List<IGenericVBO> vbos = new List<IGenericVBO>
-            {
-                new GenericVBO<Vector3>(new VBO<Vector3>(vertices), "in_position"),
-                new GenericVBO<Vector3>(new VBO<Vector3>(colors), "in_color"),
-                new GenericVBO<uint>(new VBO<uint>(indices,
-                    BufferTarget.ElementArrayBuffer,
-                    BufferUsageHint.StaticRead))
-            };
-
-            return new VAO(_mat, vbos.ToArray());
-        }
+        
     }
 }

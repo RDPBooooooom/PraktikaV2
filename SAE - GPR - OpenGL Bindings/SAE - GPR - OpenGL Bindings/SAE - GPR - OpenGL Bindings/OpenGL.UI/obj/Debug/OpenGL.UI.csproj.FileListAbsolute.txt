@@ -45,4 +45,4 @@ C:\git\PraktikaV2\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\SAE - 
 C:\git\PraktikaV2\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.csproj.CopyComplete
 C:\git\PraktikaV2\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.dll
 C:\git\PraktikaV2\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.pdb
-C:\git\PraktikaV2\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.csprojAssemblyReference.cache
+C:\git\PraktikaV2\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\SAE - GPR - OpenGL Bindings\OpenGL.UI\obj\Debug\OpenGL.UI.csproj.AssemblyReference.cache

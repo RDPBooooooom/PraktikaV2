@@ -5,7 +5,7 @@ using OpenGL.Game;
 using OpenGL.Mathematics;
 using OpenGL.Platform;
 
-namespace SAE.OpenGL.P5
+namespace SAE.OpenGL.P6
 {
     internal static class Program
     {
@@ -15,7 +15,7 @@ namespace SAE.OpenGL.P5
         //TODO: Create game instance
         private static Game game;
         private static Camera camera;
-        
+
         static void Main()
         {
             game = new Game();
@@ -34,29 +34,57 @@ namespace SAE.OpenGL.P5
             Gl.Enable(EnableCap.DepthTest);
             Gl.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
 
+            //Load texture files
+            Gl.ActiveTexture(1);
+            Texture crateTexture = new Texture("textures/crate.jpg");
+            Gl.BindTexture(crateTexture);
+
             // Load shader files
-            Material material = Material.Create("shaders\\vert.vs", "shaders\\frag.fs");
+            Material material = Material.Create("shaders\\vert_old.vs", "shaders\\frag_old.fs");
             material["color"].SetValue(new Vector3(1, 1, 1));
+
+            Material textureMaterial = Material.Create("shaders\\vert.vs", "shaders\\frag.fs");
+            textureMaterial["color"].SetValue(new Vector3(1, 1, 1));
+            textureMaterial["baseColorMap"].SetValue(1);
 
             SwapPolygonModeFill();
 
-            //Create VAO Data
             //Create game object
 
-            DynamicShape obj = new DynamicShape("Dyn Shape", material)
+            DynamicShape obj = new DynamicShape("DynShape", material)
             {
-                Transform =
+                Transform = new Transform()
+                {
+                    Position = new Vector3(5, 0, -10)
+                }
+            };
+            
+            Cube cube = new Cube("myCube", textureMaterial, crateTexture)
+            {
+                Transform = new Transform()
                 {
                     Position = new Vector3(0, 0, -10)
                 }
             };
-
+            
+            Cube cube2 = new Cube("myCube2", textureMaterial, crateTexture)
+            {
+                Transform = new Transform()
+                {
+                    Position = new Vector3(-5, 0, -10),
+                    Scale = new Vector3(2,2,2),
+                    Rotation = new Vector3(30, 30, 30)
+                }
+            };
+            
             //Add to scene
+            game.SceneGraph.Add(cube);
+            game.SceneGraph.Add(cube2);
             game.SceneGraph.Add(obj);
 
             // Hook to the escape press event using the OpenGL.UI class library
             Input.Subscribe((char) Keys.Escape, Window.OnClose);
-            
+
             Input.Subscribe('f', SwapPolygonModeFill);
             Input.Subscribe('l', SwapPolygonModeLine);
 
@@ -75,8 +103,10 @@ namespace SAE.OpenGL.P5
 
                 game.Update();
 
-                game.SceneGraph.ForEach(SetTransform);
-                game.Render();
+                Matrix4 view = camera.GetRts();
+                Matrix4 projection = GetProjectionMatrix();
+
+                game.SceneGraph.ForEach(g => Render(g, view, projection));
 
                 OnPostRenderFrame();
 
@@ -87,19 +117,12 @@ namespace SAE.OpenGL.P5
 
         #region Transformation
 
-        private static void SetTransform(GameObject obj)
+        private static void Render(GameObject obj, Matrix4 view, Matrix4 projection)
         {
-            Matrix4 view = camera.GetRts(); 
-            Matrix4 projection = GetProjectionMatrix();
-
             //--------------------------
             // Data passing to shader
             //--------------------------
-            Material material = obj.Renderer.Material;
-
-            material["projection"].SetValue(projection);
-            material["view"].SetValue(view);
-            material["model"].SetValue(obj.Transform.GetTrs());
+            obj.Render(projection * view);
         }
 
         private static Matrix4 GetProjectionMatrix()
@@ -109,7 +132,6 @@ namespace SAE.OpenGL.P5
             float aspectRatio = width / (float) height;
             Matrix4 projection =
                 Matrix4.CreatePerspectiveFieldOfView(Mathf.ToRad(fov), aspectRatio, 0.1f, 1000f);
-            //projection = Matrix4.CreateOrthographic0.0f, (float)screenWidth, 0.0f, (float)screenHeight, 0.1f, 100.0f);
 
             return projection;
         }
@@ -122,7 +144,7 @@ namespace SAE.OpenGL.P5
         {
             Gl.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
         }
-        
+
         private static void SwapPolygonModeFill()
         {
             Gl.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
