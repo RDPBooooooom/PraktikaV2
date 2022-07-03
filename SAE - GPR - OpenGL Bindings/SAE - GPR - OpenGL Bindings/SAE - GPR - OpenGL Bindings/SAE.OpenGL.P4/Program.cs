@@ -1,7 +1,8 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using OpenGL;
 using OpenGL.Game;
-using OpenGL.Mathematics;
+using OpenGL.Game.Math;
 using OpenGL.Platform;
 
 namespace SAE.OpenGL.P4
@@ -19,9 +20,9 @@ namespace SAE.OpenGL.P4
             game = new Game();
             camera = new Camera();
 
-            Time.Initialize();
+            Time.Init();
             Window.CreateWindow("OpenGL P4", 800, 600);
-            Window.SetScreenMode(new Compatibility.ScreenResolution(), true);
+            
 
             // add a reshape callback to update the UI
             Window.OnReshapeCallbacks.Add(OnResize);
@@ -34,17 +35,22 @@ namespace SAE.OpenGL.P4
             Gl.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
 
             // Load shader files
-            Material material = Material.Create("shaders\\vert.vs", "shaders\\frag.fs");
-            material["color"].SetValue(new Vector3(1, 0, 1));
+            Shader vert = ShaderUtil.CreateShader("..\\shaders\\vert.vs", ShaderType.VertexShader);
+            Shader frag = ShaderUtil.CreateShader("..\\shaders\\frag.fs", ShaderType.FragmentShader);
+            
+            
+            ShaderProgram material = new ShaderProgram(vert, frag);
+            material["color"].SetValue(new Vector3(1, 1, 1));
 
             SwapPolygonModeFill();
 
             //Create VAO Data
             //Create game object
 
+
             DynamicShape obj = new DynamicShape("Dyn Shape", material)
             {
-                Transform =
+                Transform = new Transform()
                 {
                     Position = new Vector3(0, 0, -10)
                 }
@@ -66,7 +72,7 @@ namespace SAE.OpenGL.P4
             // Game loop
             while (Window.Open)
             {
-                Window.HandleInput();
+                Window.HandleEvents();
 
                 OnPreRenderFrame();
 
@@ -75,8 +81,7 @@ namespace SAE.OpenGL.P4
                 game.Update();
 
                 game.SceneGraph.ForEach(SetTransform);
-                game.Render();
-
+                
                 OnPostRenderFrame();
 
                 Time.Update();
@@ -94,16 +99,17 @@ namespace SAE.OpenGL.P4
             //--------------------------
             // Data passing to shader
             //--------------------------
-            Material material = obj.Renderer.Material;
-
+            /*
             material["projection"].SetValue(projection);
             material["view"].SetValue(view);
-            material["model"].SetValue(obj.Transform.GetTrs());
+            material["model"].SetValue(obj.Transform.GetTrs());*/
+            //
+            obj.Render(view, projection);
         }
 
         private static Matrix4 GetProjectionMatrix()
         {
-            float fov = 45;
+            float fov = 0.45f;
 
             float aspectRatio = width / (float) height;
             Matrix4 projection =
@@ -138,8 +144,8 @@ namespace SAE.OpenGL.P4
         private static void OnClose()
         {
             // make sure to dispose of everything
-            global::OpenGL.UI.UserInterface.Dispose();
-            global::OpenGL.UI.BMFont.Dispose();
+            //global::OpenGL.UI.UserInterface.Dispose();
+            //global::OpenGL.UI.BMFont.Dispose();
         }
 
         private static void OnPreRenderFrame()

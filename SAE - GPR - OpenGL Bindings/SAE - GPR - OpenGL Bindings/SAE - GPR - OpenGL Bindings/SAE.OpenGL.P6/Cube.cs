@@ -1,19 +1,20 @@
 ﻿using System;
 using OpenGL;
 using OpenGL.Game;
+using OpenGL.Game.Shapes;
 using OpenGL.Platform;
-using OpenGL.Shapes;
 
 namespace SAE.OpenGL.P6
 {
     public class Cube : GameObject
     {
-        private Material _mat;
+        private ShaderProgram _mat;
 
         private int _uvFactor;
         private float _lastTime;
+        private float _timeSinceStart;
 
-        public Cube(string name, Material mat) : base(name)
+        public Cube(string name, ShaderProgram mat) : base(name)
         {
             _uvFactor = 1;
 
@@ -24,7 +25,7 @@ namespace SAE.OpenGL.P6
                     Shapes.UvTextureCube, _mat));
         }
         
-        public Cube(string name, Material mat, Texture texture) : base(name)
+        public Cube(string name, ShaderProgram mat, Texture texture) : base(name)
         {
             _uvFactor = 1;
 
@@ -39,11 +40,16 @@ namespace SAE.OpenGL.P6
             Input.Subscribe('n', UvSizeDown);
         }
 
+        public override void Update()
+        {
+            _timeSinceStart += Time.DeltaTime;
+        }
+
         private void UvSizeUp()
         {
             // Make sure it doesnt happen too often
-            if (0.5 > Time.TimeSinceStart - _lastTime) return;
-            _lastTime = Time.TimeSinceStart;
+            if (0.5 > _timeSinceStart - _lastTime) return;
+            _lastTime = _timeSinceStart;
 
             _mat.Use();
             _uvFactor++;
@@ -53,8 +59,8 @@ namespace SAE.OpenGL.P6
         private void UvSizeDown()
         {
             // Make sure it doesnt happen too often
-            if (0.5 > Time.TimeSinceStart - _lastTime) return;
-            _lastTime = Time.TimeSinceStart;
+            if (0.5 > _timeSinceStart - _lastTime) return;
+            _lastTime = _timeSinceStart;
 
             _mat.Use();
             _uvFactor--;

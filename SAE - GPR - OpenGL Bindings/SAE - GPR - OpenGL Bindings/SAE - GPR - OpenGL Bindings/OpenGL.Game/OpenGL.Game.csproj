@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net46</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <Nullable>disable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\gui4opengl\OpenGL.UI.csproj" />
       <ProjectReference Include="..\OpenGL.Platform\OpenGL.Platform.csproj" />
-      <ProjectReference Include="..\OpenGL.UI\OpenGL.UI.csproj" />
       <ProjectReference Include="..\OpenGL\OpenGL.csproj" />
     </ItemGroup>
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using OpenGL.Mathematics;
+using OpenGL;
 
 namespace OpenGL.Game
 {
@@ -44,21 +43,21 @@ namespace OpenGL.Game
         {
         }
 
-        public void Render(Matrix4 vp)
+        public void Render(Matrix4 view, Matrix4 projection)
         {
-            Renderer.Render(vp * Transform.GetTrs());
+            Renderer.Render(Transform.GetRst(), view, projection );
         }
 
         #endregion
 
         #region Protected Methods
 
-        protected static VAO GetVao(Vector3[] vertices, uint[] indices, Vector3[] colors, Material mat)
+        protected static VAO GetVao(Vector3[] vertices, uint[] indices, Vector3[] colors, ShaderProgram mat)
         {
             return GetVao(vertices, indices, colors, null, mat);
         }
 
-        protected static VAO GetVao(Vector3[] vertices, uint[] indices, Vector3[] colors, Vector2[] uv, Material mat)
+        protected static VAO GetVao(Vector3[] vertices, uint[] indices, Vector3[] colors, Vector2[] uv, ShaderProgram mat)
 
         {
             List<IGenericVBO> vbos = new List<IGenericVBO>

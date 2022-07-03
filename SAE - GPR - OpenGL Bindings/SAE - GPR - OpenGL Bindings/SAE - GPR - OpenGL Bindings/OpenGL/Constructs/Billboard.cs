@@ -9,7 +9,7 @@ namespace OpenGL
     public class Billboard : IDisposable
     {
         #region Properties
-        public Material Program { get; private set; }
+        public ShaderProgram Program { get; private set; }
 
         public Texture Texture { get; private set; }
 
@@ -19,12 +19,12 @@ namespace OpenGL
         #endregion
 
         #region Constructors
-        public Billboard(Material program, Texture texture, Vector3 location, float size)
+        public Billboard(ShaderProgram program, Texture texture, Vector3 location, float size)
             : this(program, texture, new Vector3[] { location }, new Vector3[] { new Vector3(1, 1, 1) })
         {
         }
 
-        public Billboard(Material program, Texture texture, Vector3[] locations, Vector3[] colors)
+        public Billboard(ShaderProgram program, Texture texture, Vector3[] locations, Vector3[] colors)
         {
             Program = program;
             Texture = texture;

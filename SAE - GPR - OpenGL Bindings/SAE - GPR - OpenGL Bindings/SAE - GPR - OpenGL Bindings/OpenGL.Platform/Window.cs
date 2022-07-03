@@ -99,8 +99,7 @@ namespace OpenGL.Platform
                 return ErrorCode.WindowWasNotInitialized;
             }
 
-            int width, height;
-            SDL.SDL_GetWindowSize(window, out width, out height);
+            SDL.SDL_GetWindowSize(window, out int width, out int height);
 
             Width = width;
             Height = height;
@@ -183,7 +182,7 @@ namespace OpenGL.Platform
 
         private static byte[] mouseState = new byte[256];
 
-        public static void HandleInput()
+        public static void HandleEvents()
         {
             while (SDL.SDL_PollEvent(out sdlEvent) != 0 && window != IntPtr.Zero)
             {

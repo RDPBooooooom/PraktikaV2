@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 
 namespace OpenGL
 {
@@ -150,7 +149,7 @@ namespace OpenGL
             FramebufferErrorCode status = Gl.CheckFramebufferStatus(FramebufferTarget.Framebuffer);
             if (status != FramebufferErrorCode.FramebufferComplete)
             {
-                Console.WriteLine("Frame buffer did not compile correctly.  Returned {0}, glError: {1}", status.ToString(), Gl.GetError().ToString());
+                //Console.WriteLine("Frame buffer did not compile correctly.  Returned {0}, glError: {1}", status.ToString(), Gl.GetError().ToString());
             }
 
             Gl.BindFramebuffer(FramebufferTarget.Framebuffer, 0);

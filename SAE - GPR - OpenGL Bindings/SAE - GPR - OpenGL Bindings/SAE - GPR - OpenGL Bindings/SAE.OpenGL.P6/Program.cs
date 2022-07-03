@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using OpenGL;
 using OpenGL.Game;
-using OpenGL.Mathematics;
+using OpenGL.Game.Math;
 using OpenGL.Platform;
 
 namespace SAE.OpenGL.P6
@@ -21,7 +21,7 @@ namespace SAE.OpenGL.P6
             game = new Game();
             camera = new Camera();
 
-            Time.Initialize();
+            Time.Init();
             Window.CreateWindow("OpenGL P6", 800, 600);
 
             // add a reshape callback to update the UI
@@ -36,17 +36,21 @@ namespace SAE.OpenGL.P6
 
             //Load texture files
             Gl.ActiveTexture(1);
-            Texture crateTexture = new Texture("textures/crate.jpg");
+            Texture crateTexture = new Texture("..\\textures\\crate.jpg");
             Gl.BindTexture(crateTexture);
 
             // Load shader files
-            Material material = Material.Create("shaders\\vert_old.vs", "shaders\\frag_old.fs");
+            ShaderProgram material =
+                new ShaderProgram(ShaderUtil.CreateShader("..\\shaders\\vert_old.vs", ShaderType.VertexShader),
+                    ShaderUtil.CreateShader("..\\shaders\\frag_old.fs", ShaderType.FragmentShader));
             material["color"].SetValue(new Vector3(1, 1, 1));
 
-            Material textureMaterial = Material.Create("shaders\\vert.vs", "shaders\\frag.fs");
+            ShaderProgram textureMaterial =  new ShaderProgram(ShaderUtil.CreateShader("..\\shaders\\vert.vs", ShaderType.VertexShader),
+                ShaderUtil.CreateShader("..\\shaders\\frag.fs", ShaderType.FragmentShader));
             textureMaterial["color"].SetValue(new Vector3(1, 1, 1));
             textureMaterial["baseColorMap"].SetValue(1);
-
+            
+            
             SwapPolygonModeFill();
 
             //Create game object
@@ -55,7 +59,7 @@ namespace SAE.OpenGL.P6
             {
                 Transform = new Transform()
                 {
-                    Position = new Vector3(5, 0, -10)
+                    Position = new Vector3(5, 0, -10f)
                 }
             };
             
@@ -63,7 +67,8 @@ namespace SAE.OpenGL.P6
             {
                 Transform = new Transform()
                 {
-                    Position = new Vector3(0, 0, -10)
+                    Position = new Vector3(0, 0, -10f),
+                    Rotation = new Vector3(0, 45, 45)
                 }
             };
             
@@ -71,12 +76,12 @@ namespace SAE.OpenGL.P6
             {
                 Transform = new Transform()
                 {
-                    Position = new Vector3(-5, 0, -10),
+                    Position = new Vector3(-5, 0, -10f),
                     Scale = new Vector3(2,2,2),
                     Rotation = new Vector3(30, 30, 30)
                 }
             };
-            
+
             //Add to scene
             game.SceneGraph.Add(cube);
             game.SceneGraph.Add(cube2);
@@ -95,7 +100,7 @@ namespace SAE.OpenGL.P6
             // Game loop
             while (Window.Open)
             {
-                Window.HandleInput();
+                Window.HandleEvents();
 
                 OnPreRenderFrame();
 
@@ -103,7 +108,7 @@ namespace SAE.OpenGL.P6
 
                 game.Update();
 
-                Matrix4 view = camera.GetRts();
+                Matrix4 view = camera.Transform.GetTrs();
                 Matrix4 projection = GetProjectionMatrix();
 
                 game.SceneGraph.ForEach(g => Render(g, view, projection));
@@ -119,19 +124,20 @@ namespace SAE.OpenGL.P6
 
         private static void Render(GameObject obj, Matrix4 view, Matrix4 projection)
         {
+
             //--------------------------
             // Data passing to shader
             //--------------------------
-            obj.Render(projection * view);
+            obj.Render(view, projection);
         }
 
         private static Matrix4 GetProjectionMatrix()
         {
-            float fov = 45;
+            float fov = 60f;
 
             float aspectRatio = width / (float) height;
             Matrix4 projection =
-                Matrix4.CreatePerspectiveFieldOfView(Mathf.ToRad(fov), aspectRatio, 0.1f, 1000f);
+                Matrix4.CreatePerspectiveFieldOfView(0.45f, aspectRatio, 0.1f, 1000f);
 
             return projection;
         }

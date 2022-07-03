@@ -133,7 +133,7 @@ namespace SDL2
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
 		public static extern void SDL_SetMainReady();
 
-        #endregion
+#endregion
 
         #region SDL.h
 

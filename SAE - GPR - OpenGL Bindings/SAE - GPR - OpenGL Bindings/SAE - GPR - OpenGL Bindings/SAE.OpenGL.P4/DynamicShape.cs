@@ -1,25 +1,27 @@
-﻿using OpenGL;
+﻿using System;
+using OpenGL;
 using OpenGL.Game;
+using OpenGL.Game.Shapes;
 using OpenGL.Platform;
-using OpenGL.Shapes;
 
 namespace SAE.OpenGL.P4
 {
     public class DynamicShape : GameObject
     {
 
-        private Material _mat;
+        private ShaderProgram _mat;
 
-        public DynamicShape(string name, Material mat) : base(name)
+        public DynamicShape(string name, ShaderProgram mat) : base(name)
         {
             _mat = mat;
 
-            VAO cube = new VAO(mat, new VBO<Vector3>(Shapes.VerticesCube),
-                new VBO<uint>(Shapes.IndicesCube, BufferTarget.ElementArrayBuffer, BufferUsageHint.StaticRead));
 
+            VAO cube = GetVao(Shapes.VerticesCube, Shapes.IndicesCube, Shapes.ColorsCube, _mat);
+            
             Renderer = new MeshRenderer(mat, cube);
-
+            
             RegisterShapeSwap();
+            
         }
 
         public void RegisterShapeSwap()

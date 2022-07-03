@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Windows.Forms;
-using OpenGL.Mathematics;
 using OpenGL.Platform;
 
 namespace OpenGL.Game
@@ -21,7 +19,6 @@ namespace OpenGL.Game
         public Camera()
         {
             Transform = new Transform();
-            Move(new Vector3(0, 0, 1));
 
             InitActions();
         }

@@ -3369,11 +3369,7 @@ namespace OpenGL
         /// </param>
         public static void DeleteVertexArrays(Int32 n, UInt32[] arrays)
         {
-            try
-            {
-                Delegates.glDeleteVertexArrays(n, arrays);
-            }
-            catch { }
+            Delegates.glDeleteVertexArrays(n, arrays);
         }
 
         /// <summary>

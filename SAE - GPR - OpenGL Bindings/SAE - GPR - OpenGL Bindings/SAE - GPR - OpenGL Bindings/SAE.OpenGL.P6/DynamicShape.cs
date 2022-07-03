@@ -1,13 +1,13 @@
 ﻿using OpenGL;
 using OpenGL.Game;
+using OpenGL.Game.Shapes;
 using OpenGL.Platform;
-using OpenGL.Shapes;
 
 namespace SAE.OpenGL.P6
 {
     public class DynamicShape : GameObject
     {
-        private Material _mat;
+        private ShaderProgram _mat;
 
         private static readonly Vector3[] Colors = new Vector3[]
         {
@@ -16,7 +16,7 @@ namespace SAE.OpenGL.P6
             new Vector3(0f, 0f, 1f)
         };
 
-        public DynamicShape(string name, Material mat) : base(name)
+        public DynamicShape(string name, ShaderProgram mat) : base(name)
         {
             _mat = mat;
 

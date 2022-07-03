@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 
 #if USE_NUMERICS
 using System.Numerics;
@@ -89,7 +87,7 @@ namespace OpenGL
         /// Gets the location of the parameter in a compiled OpenGL program.
         /// </summary>
         /// <param name="Program">Specifies the shader program that contains this parameter.</param>
-        public void GetLocation(Material Program)
+        public void GetLocation(ShaderProgram Program)
         {
             Program.Use();
             if (programid == 0)
@@ -265,7 +263,7 @@ namespace OpenGL
         #endregion
     }
 
-    public class Material : IDisposable
+    public class ShaderProgram : IDisposable
     {
         #region Properties
         /// <summary>
@@ -316,7 +314,7 @@ namespace OpenGL
         /// </summary>
         /// <param name="vertexShader">Specifies the vertex shader.</param>
         /// <param name="fragmentShader">Specifies the fragment shader.</param>
-        public Material(Shader vertexShader, Shader fragmentShader)
+        public ShaderProgram(Shader vertexShader, Shader fragmentShader)
         {
             this.VertexShader = vertexShader;
             this.FragmentShader = fragmentShader;
@@ -342,34 +340,17 @@ namespace OpenGL
         /// </summary>
         /// <param name="vertexShaderSource">Specifies the source code of the vertex shader.</param>
         /// <param name="fragmentShaderSource">Specifies the source code of the fragment shader.</param>
-        public Material(string vertexShaderSource, string fragmentShaderSource)
+        public ShaderProgram(string vertexShaderSource, string fragmentShaderSource)
             : this(new Shader(vertexShaderSource, ShaderType.VertexShader), new Shader(fragmentShaderSource, ShaderType.FragmentShader))
         {
             DisposeChildren = true;
         }
 
-
-
-        ~Material()
+        ~ShaderProgram()
         {
             Dispose(false);
         }
         #endregion
-
-        public static Material Create(string pathVS, string pathFS)
-        {
-            string currentPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            var pvs = Path.Combine(currentPath, pathVS);
-            var pfs = Path.Combine(currentPath, pathFS);
-
-            string shaderContentVS = File.ReadAllText(pvs);
-            string shaderContentFS = File.ReadAllText(pfs);
-
-            Material sp = new Material(shaderContentVS, shaderContentFS);
-
-            return sp;
-        }
 
         #region GetParams
         /// <summary>
@@ -548,7 +529,7 @@ namespace OpenGL
         #region Methods
         public void Use()
         {
-            if (Gl.CurrentProgram != ProgramID) Gl.UseProgram(this.ProgramID);
+            Gl.UseProgram(this.ProgramID);
         }
 
         public int GetUniformLocation(string Name)
@@ -575,9 +556,6 @@ namespace OpenGL
         {
             if (ProgramID != 0)
             {
-                // Make sure this program isn't being used
-                if (Gl.CurrentProgram == ProgramID) Gl.UseProgram(0);
-
                 Gl.DetachShader(ProgramID, VertexShader.ShaderID);
                 Gl.DetachShader(ProgramID, FragmentShader.ShaderID);
                 Gl.DeleteProgram(ProgramID);

@@ -107,6 +107,7 @@ namespace OpenGL
 
         #region Private Fields
         private static int version = 0;
+        private static int versionMinor = 0;
         private static uint currentProgram = 0;
         #endregion
 
@@ -114,6 +115,7 @@ namespace OpenGL
         /// <summary>
         /// Gets the program ID of the currently active shader program.
         /// </summary>
+        [Obsolete("CurrentProgram is deprecated as unreliable, as it will not return the correct value in the presence of multiple OpenGL contexts.")]
         public static uint CurrentProgram
         {
             get { return currentProgram; }
@@ -278,7 +280,7 @@ namespace OpenGL
         /// Shortcut for deleting a framebuffer without created an array to pass to the gl function.
         /// Calls Gl.DeleteFramebuffers(1, id).
         /// </summary>
-        /// <param name="vao">The ID of the vertex array to delete.</param>
+        /// <param name="framebuffer">The ID of the vertex array to delete.</param>
         public static void DeleteFramebuffer(uint framebuffer)
         {
             uint1[0] = framebuffer;
@@ -381,6 +383,19 @@ namespace OpenGL
         }
 
         /// <summary>
+        /// Creates and initializes an empty buffer object's data store.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="target">Specifies the target buffer object.</param>
+        /// <param name="size">Specifies the size in bytes of the buffer object's new data store.</param>
+        /// <param name="usage">Specifies expected usage pattern of the data store.</param>
+        public static void BufferData<T>(BufferTarget target, Int32 size, BufferUsageHint usage)
+            where T : struct
+        {
+            Delegates.glBufferData(target, new IntPtr(size), IntPtr.Zero, usage);
+        }
+
+        /// <summary>
         /// Creates and initializes a buffer object's data store.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -417,7 +432,7 @@ namespace OpenGL
             uint vboHandle = Gl.GenBuffer();
             if (vboHandle == 0) return 0;
 
-            int size = data.Length * Marshal.SizeOf(typeof(T));
+            int size = data.Length * Marshal.SizeOf<T>();
 
 #if MEMORY_LOGGER
             MemoryLogger.AllocateVBO(vboHandle, size);
@@ -444,7 +459,7 @@ namespace OpenGL
             uint vboHandle = Gl.GenBuffer();
             if (vboHandle == 0) return 0;
 
-            int size = length * Marshal.SizeOf(typeof(T));
+            int size = length * Marshal.SizeOf<T>();
 
 #if MEMORY_LOGGER
             MemoryLogger.AllocateVBO(vboHandle, size);
@@ -472,8 +487,8 @@ namespace OpenGL
             uint vboHandle = Gl.GenBuffer();
             if (vboHandle == 0) return 0;
 
-            int offset = position * Marshal.SizeOf(typeof(T));
-            int size = length * Marshal.SizeOf(typeof(T));
+            int offset = position * Marshal.SizeOf<T>();
+            int size = length * Marshal.SizeOf<T>();
 
 #if MEMORY_LOGGER
             MemoryLogger.AllocateVBO(vboHandle, size - offset);
@@ -481,6 +496,32 @@ namespace OpenGL
 
             Gl.BindBuffer(target, vboHandle);
             Gl.BufferData<T>(target, offset, size, data, hint);
+            Gl.BindBuffer(target, 0);
+            return vboHandle;
+        }
+
+        /// <summary>
+        /// Creates a standard VBO of type T with a specified length.
+        /// </summary>
+        /// <typeparam name="T">The type of the data being stored in the VBO (make sure it's byte aligned).</typeparam>
+        /// <param name="target">The VBO BufferTarget (usually ArrayBuffer or ElementArrayBuffer).</param>
+        /// <param name="hint">The buffer usage hint (usually StaticDraw).</param>
+        /// <param name="length">The length of the VBO.</param>
+        /// <returns>The buffer ID of the VBO on success, 0 on failure.</returns>
+        public static uint CreateVBO<T>(BufferTarget target, BufferUsageHint hint, int length)
+            where T : struct
+        {
+            uint vboHandle = Gl.GenBuffer();
+            if (vboHandle == 0) return 0;
+
+            int size = length * Marshal.SizeOf<T>();
+
+#if MEMORY_LOGGER
+            MemoryLogger.AllocateVBO(vboHandle, size);
+#endif
+
+            Gl.BindBuffer(target, vboHandle);
+            Gl.BufferData<T>(target, size, hint);
             Gl.BindBuffer(target, 0);
             return vboHandle;
         }
@@ -630,7 +671,7 @@ namespace OpenGL
         /// <param name="stride">The stride of the VBO.</param>
         /// <param name="eboHandle">The element buffer handle.</param>
         /// <returns>The vertex array object (VAO) ID.</returns>
-        public static uint CreateVAO(Material program, uint vbo, int[] sizes, VertexAttribPointerType[] types, BufferTarget[] targets, string[] names, int stride, uint eboHandle)
+        public static uint CreateVAO(ShaderProgram program, uint vbo, int[] sizes, VertexAttribPointerType[] types, BufferTarget[] targets, string[] names, int stride, uint eboHandle)
         {
             uint vaoHandle = Gl.GenVertexArray();
             Gl.BindVertexArray(vaoHandle);
@@ -652,9 +693,9 @@ namespace OpenGL
         }
 
         /// <summary>
-        /// Gets the current OpenGL version (returns a cached result on subsequent calls).
+        /// Gets the current major OpenGL version (returns a cached result on subsequent calls).
         /// </summary>
-        /// <returns>The current OpenGL version, or 0 on an error.</returns>
+        /// <returns>The current major OpenGL version, or 0 on an error.</returns>
         public static int Version()
         {
             if (version != 0) return version; // cache the version information
@@ -668,8 +709,30 @@ namespace OpenGL
             }
             catch (Exception)
             {
-                Console.WriteLine("Error while retrieving the OpenGL version.");
+                //Console.WriteLine("Error while retrieving the OpenGL version.");
                 return 0;
+            }
+        }
+
+        /// <summary>
+        /// Gets the current minor OpenGL version (returns a cached result on subsequent calls).
+        /// </summary>
+        /// <returns>The current minor OpenGL version, or -1 on an error.</returns>
+        public static int VersionMinor()
+        {
+            if (versionMinor != 0) return versionMinor; // cache the version information
+
+            try
+            {
+                string versionString = Gl.GetString(StringName.Version);
+
+                versionMinor = int.Parse(versionString.Split('.')[1]);
+                return Gl.versionMinor;
+            }
+            catch (Exception)
+            {
+                //Console.WriteLine("Error while retrieving the OpenGL version.");
+                return -1;
             }
         }
 
@@ -677,7 +740,7 @@ namespace OpenGL
         /// Installs a program object as part of current rendering state.
         /// </summary>
         /// <param name="Program">Specifies the handle of the program object whose executables are to be used as part of current rendering state.</param>
-        public static void UseProgram(Material Program)
+        public static void UseProgram(ShaderProgram Program)
         {
             Gl.UseProgram(Program.ProgramID);
         }
@@ -699,7 +762,7 @@ namespace OpenGL
         /// <param name="program">The shader program that contains the uniform block.</param>
         /// <param name="uniformBlockName">The uniform block name.</param>
         /// <returns>The index of the uniform block.</returns>
-        public static uint GetUniformBlockIndex(Material program, string uniformBlockName)
+        public static uint GetUniformBlockIndex(ShaderProgram program, string uniformBlockName)
         {
             return Gl.GetUniformBlockIndex(program.ProgramID, uniformBlockName);
         }
@@ -720,14 +783,15 @@ namespace OpenGL
         /// <param name="buffer">The VBO to bind to the shader attribute.</param>
         /// <param name="program">The shader program whose attribute will be bound to.</param>
         /// <param name="attributeName">The name of the shader attribute to be bound to.</param>
-        public static void BindBufferToShaderAttribute<T>(VBO<T> buffer, Material program, string attributeName)
+        public static void BindBufferToShaderAttribute<T>(VBO<T> buffer, ShaderProgram program, string attributeName)
             where T : struct
         {
-            uint location = (uint)Gl.GetAttribLocation(program.ProgramID, attributeName);
+            var cachedAttribute = program[attributeName];
+            uint location = (uint)(cachedAttribute?.Location ?? Gl.GetAttribLocation(program.ProgramID, attributeName));
 
             Gl.EnableVertexAttribArray(location);
             Gl.BindBuffer(buffer);
-            Gl.VertexAttribPointer(location, buffer.Size, buffer.PointerType, true, Marshal.SizeOf(typeof(T)), IntPtr.Zero);
+            Gl.VertexAttribPointer(location, buffer.Size, buffer.PointerType, true, Marshal.SizeOf<T>(), IntPtr.Zero);
         }
 
         /// <summary>

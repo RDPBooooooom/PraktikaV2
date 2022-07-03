@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OpenGL.Platform
+﻿namespace OpenGL.Platform
 {
     public static class Time
     {
@@ -8,11 +6,6 @@ namespace OpenGL.Platform
         private static System.Diagnostics.Stopwatch Timer;
         private static int deltaTimeIntegrator;
         private static float physicsAccumulator = 0f;
-
-        /// <summary>
-        /// Gets the amount of (accumulated) time in seconds since start up.
-        /// </summary>
-        public static float TimeSinceStart { get; private set; }
 
         /// <summary>
         /// Gets the amount of time in seconds that the previous frame took to render.
@@ -58,7 +51,7 @@ namespace OpenGL.Platform
         /// <summary>
         /// Initializes and begins a Stopwatch for the Time static class.
         /// </summary>
-        public static void Initialize()
+        public static void Init()
         {
             Timer = System.Diagnostics.Stopwatch.StartNew();
             FrameCount = 0;
@@ -70,7 +63,7 @@ namespace OpenGL.Platform
         /// <summary>
         /// Updates the privately updated static properties and resets the Stopwatch.
         /// </summary>
-        public static void Update()
+        public static float Update()
         {
             float frequencyInverse = TimeScale / System.Diagnostics.Stopwatch.Frequency;
 
@@ -93,7 +86,7 @@ namespace OpenGL.Platform
 
             Timer.Restart();
 
-            TimeSinceStart += DeltaTime;
+            return DeltaTime;
         }
         #endregion
     }

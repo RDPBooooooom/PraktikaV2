@@ -62,7 +62,7 @@ namespace OpenGL
         #endregion
 
         #region Methods
-        public VAO CreateString(Material Program, string Text)
+        public VAO CreateString(ShaderProgram Program, string Text)
         {
             Vector3[] vertices = new Vector3[Text.Length * 4];
             Vector2[] uvs = new Vector2[Text.Length * 4];

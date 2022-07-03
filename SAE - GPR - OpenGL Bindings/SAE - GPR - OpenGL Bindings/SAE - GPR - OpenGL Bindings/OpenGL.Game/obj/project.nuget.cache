@@ -1,8 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "N2IvuGab21jyA/FEz6VIurt/AWX19i3ZLzsch6r3TyLKvDo4rozivrzYbK/1Wp7Vb9xaCIRO+05s7oKqkz5+BA==",
+  "dgSpecHash": "5mSOc98UDps2Y3iYqIs/Ku5Zce9EiLnQH6eZ34k1ins8b3j0jhSkCf6R8Qv3opFaywco0gKjiZImbmIfvtV/Gw==",
   "success": true,
   "projectFilePath": "C:\\git\\PraktikaV2\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\SAE - GPR - OpenGL Bindings\\OpenGL.Game\\OpenGL.Game.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\marvi\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\marvi\\.nuget\\packages\\microsoft.netcore.targets\\1.0.1\\microsoft.netcore.targets.1.0.1.nupkg.sha512",
+    "C:\\Users\\marvi\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\marvi\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\marvi\\.nuget\\packages\\system.drawing.common\\5.0.2\\system.drawing.common.5.0.2.nupkg.sha512",
+    "C:\\Users\\marvi\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\marvi\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\marvi\\.nuget\\packages\\system.runtime\\4.1.0\\system.runtime.4.1.0.nupkg.sha512",
+    "C:\\Users\\marvi\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.3\\system.runtime.compilerservices.unsafe.4.5.3.nupkg.sha512",
+    "C:\\Users\\marvi\\.nuget\\packages\\system.threading.thread\\4.0.0\\system.threading.thread.4.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

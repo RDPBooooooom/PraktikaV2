@@ -1,4 +1,5 @@
 ﻿using System;
+using OpenGL;
 
 namespace OpenGL.Game
 {
@@ -6,7 +7,7 @@ namespace OpenGL.Game
     {
         #region Properties
 
-        public Material Material { get; set; }
+        public ShaderProgram Material { get; set; }
 
         public Texture Texture { get; set; }
 
@@ -16,13 +17,13 @@ namespace OpenGL.Game
 
         #region Constructor
 
-        public MeshRenderer(Material material, VAO geometry)
+        public MeshRenderer(ShaderProgram material, VAO geometry)
         {
             Material = material;
             Geometry = geometry;
         }
         
-        public MeshRenderer(Material material, Texture texture, VAO geometry)
+        public MeshRenderer(ShaderProgram material, Texture texture, VAO geometry)
         {
             Material = material;
             Texture = texture;
@@ -33,11 +34,12 @@ namespace OpenGL.Game
 
         #region Public Methods
 
-        public void Render(Matrix4 mvp)
+        public void Render(Matrix4 model, Matrix4 view, Matrix4 projection)
         {
             Geometry.Program.Use();
-            Material["mvp"].SetValue(mvp);
-            
+            Material["projection"].SetValue(projection);
+            Material["view"].SetValue(view);
+            Material["model"].SetValue(model);
             Geometry.Draw();
         }
 

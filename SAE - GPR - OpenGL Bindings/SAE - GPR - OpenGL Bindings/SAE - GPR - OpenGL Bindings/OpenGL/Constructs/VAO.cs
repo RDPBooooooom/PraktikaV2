@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenGL.Constructs;
+using System;
 using System.Collections.Generic;
 
 #if USE_NUMERICS
@@ -11,7 +12,7 @@ namespace OpenGL
         where T1 : struct
     {
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, string attribName, VBO<int> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, string attribName, VBO<int> elementArray)
             : base(program)
         {
             IGenericVBO[] vbos = new IGenericVBO[2];
@@ -22,7 +23,7 @@ namespace OpenGL
         }
 
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, string[] attribNames, VBO<int> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, string[] attribNames, VBO<int> elementArray)
             : base(program)
         {
             if (attribNames.Length != 1) throw new Exception(string.Format("Expected an array of 1 name, but instead got {0}.", attribNames.Length));
@@ -40,7 +41,7 @@ namespace OpenGL
         where T2 : struct
     {
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, string attribName, VBO<T2> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, string attribName, VBO<T2> elementArray)
     : base(program, false)
         {
             IGenericVBO[] vbos = new IGenericVBO[2];
@@ -51,7 +52,7 @@ namespace OpenGL
         }
 
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, string[] attribNames, VBO<T2> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, string[] attribNames, VBO<T2> elementArray)
     : base(program, false)
         {
             if (attribNames.Length != 1) throw new Exception(string.Format("Expected an array of 1 names, but instead got {0}.", attribNames.Length));
@@ -64,7 +65,7 @@ namespace OpenGL
         }
 
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, VBO<T2> vbo2, string[] attribNames, VBO<int> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, VBO<T2> vbo2, string[] attribNames, VBO<int> elementArray)
             : base(program)
         {
             if (attribNames.Length != 2) throw new Exception(string.Format("Expected an array of 2 names, but instead got {0}.", attribNames.Length));
@@ -84,7 +85,7 @@ namespace OpenGL
         where T3 : struct
     {
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, VBO<T2> vbo2, string[] attribNames, VBO<T3> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, VBO<T2> vbo2, string[] attribNames, VBO<T3> elementArray)
     : base(program, false)
         {
             if (attribNames.Length != 2) throw new Exception(string.Format("Expected an array of 2 names, but instead got {0}.", attribNames.Length));
@@ -98,7 +99,7 @@ namespace OpenGL
         }
 
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, string[] attribNames, VBO<int> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, string[] attribNames, VBO<int> elementArray)
             : base(program)
         {
             if (attribNames.Length != 3) throw new Exception(string.Format("Expected an array of 3 names, but instead got {0}.", attribNames.Length));
@@ -120,7 +121,7 @@ namespace OpenGL
         where T4 : struct
     {
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, string[] attribNames, VBO<T4> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, string[] attribNames, VBO<T4> elementArray)
     : base(program, false)
         {
             if (attribNames.Length != 3) throw new Exception(string.Format("Expected an array of 3 names, but instead got {0}.", attribNames.Length));
@@ -135,7 +136,7 @@ namespace OpenGL
         }
 
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, string[] attribNames, VBO<int> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, string[] attribNames, VBO<int> elementArray)
             : base(program)
         {
             if (attribNames.Length != 4) throw new Exception(string.Format("Expected an array of 4 names, but instead got {0}.", attribNames.Length));
@@ -159,7 +160,7 @@ namespace OpenGL
         where T5 : struct
     {
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, string[] attribNames, VBO<T5> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, string[] attribNames, VBO<T5> elementArray)
     : base(program, false)
         {
             if (attribNames.Length != 4) throw new Exception(string.Format("Expected an array of 4 names, but instead got {0}.", attribNames.Length));
@@ -175,7 +176,7 @@ namespace OpenGL
         }
 
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, VBO<T5> vbo5, string[] attribNames, VBO<int> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, VBO<T5> vbo5, string[] attribNames, VBO<int> elementArray)
             : base(program)
         {
             if (attribNames.Length != 5) throw new Exception(string.Format("Expected an array of 5 names, but instead got {0}.", attribNames.Length));
@@ -201,7 +202,7 @@ namespace OpenGL
         where T6 : struct
     {
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, VBO<T5> vbo5, string[] attribNames, VBO<T6> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, VBO<T5> vbo5, string[] attribNames, VBO<T6> elementArray)
     : base(program, false)
         {
             if (attribNames.Length != 5) throw new Exception(string.Format("Expected an array of 5 names, but instead got {0}.", attribNames.Length));
@@ -218,7 +219,7 @@ namespace OpenGL
         }
 
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, VBO<T5> vbo5, VBO<T6> vbo6, string[] attribNames, VBO<int> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, VBO<T5> vbo5, VBO<T6> vbo6, string[] attribNames, VBO<int> elementArray)
             : base(program)
         {
             if (attribNames.Length != 6) throw new Exception(string.Format("Expected an array of 6 names, but instead got {0}.", attribNames.Length));
@@ -246,7 +247,7 @@ namespace OpenGL
         where T7 : struct
     {
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, VBO<T5> vbo5, VBO<T6> vbo6, string[] attribNames, VBO<T7> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, VBO<T5> vbo5, VBO<T6> vbo6, string[] attribNames, VBO<T7> elementArray)
     : base(program, false)
         {
             if (attribNames.Length != 6) throw new Exception(string.Format("Expected an array of 6 names, but instead got {0}.", attribNames.Length));
@@ -264,7 +265,7 @@ namespace OpenGL
         }
 
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, VBO<T5> vbo5, VBO<T6> vbo6, VBO<T7> vbo7, string[] attribNames, VBO<int> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, VBO<T5> vbo5, VBO<T6> vbo6, VBO<T7> vbo7, string[] attribNames, VBO<int> elementArray)
             : base(program)
         {
             if (attribNames.Length != 7) throw new Exception(string.Format("Expected an array of 7 names, but instead got {0}.", attribNames.Length));
@@ -294,7 +295,7 @@ namespace OpenGL
         where T8 : struct
     {
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, VBO<T5> vbo5, VBO<T6> vbo6, VBO<T7> vbo7, string[] attribNames, VBO<T8> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, VBO<T5> vbo5, VBO<T6> vbo6, VBO<T7> vbo7, string[] attribNames, VBO<T8> elementArray)
     : base(program, false)
         {
             if (attribNames.Length != 7) throw new Exception(string.Format("Expected an array of 7 names, but instead got {0}.", attribNames.Length));
@@ -313,7 +314,7 @@ namespace OpenGL
         }
 
         [Obsolete("This VAO constructor is deprecated in favour of using VAO(ShaderProgram program, IGenericVBO[] vbos).")]
-        public VAO(Material program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, VBO<T5> vbo5, VBO<T6> vbo6, VBO<T7> vbo7, VBO<T8> vbo8, string[] attribNames, VBO<int> elementArray)
+        public VAO(ShaderProgram program, VBO<T1> vbo1, VBO<T2> vbo2, VBO<T3> vbo3, VBO<T4> vbo4, VBO<T5> vbo5, VBO<T6> vbo6, VBO<T7> vbo7, VBO<T8> vbo8, string[] attribNames, VBO<int> elementArray)
             : base(program)
         {
             if (attribNames.Length != 8) throw new Exception(string.Format("Expected an array of 8 names, but instead got {0}.", attribNames.Length));
@@ -403,13 +404,13 @@ namespace OpenGL
         #endregion
 
         #region Constructor and Destructor
-        public GenericVAO(Material program)
+        public GenericVAO(ShaderProgram program)
         {
             Program = program;
             DrawMode = BeginMode.Triangles;
         }
 
-        public GenericVAO(Material program, bool allowIntAsElementType)
+        public GenericVAO(ShaderProgram program, bool allowIntAsElementType)
         {
             Program = program;
             DrawMode = BeginMode.Triangles;
@@ -432,11 +433,21 @@ namespace OpenGL
 
                 Draw = DrawOGL3;
                 DrawInstanced = DrawInstancedOGL3;
+
+                if (Gl.Version() > 4 || (Gl.Version() == 4 && Gl.VersionMinor() >= 3))
+                {
+                    MultiDrawElementsIndirect = MultiDrawElementsIndirectOGL43;
+                }
+                else
+                {
+                    MultiDrawElementsIndirect = MultiDrawElementsIndirectOGLTooOld;
+                }
             }
             else
             {
                 Draw = DrawOGL2;
                 DrawInstanced = DrawInstancedOGL2;
+                MultiDrawElementsIndirect = MultiDrawElementsIndirectOGLTooOld;
             }
         }
 
@@ -449,9 +460,11 @@ namespace OpenGL
         #region Properties
         private bool disposeChildren = false;
         private DrawElementsType elementType;
+        public DrawElementsType ElementType { get { return elementType; } }
         private bool allowIntAsElementType = true;
         private int offset = 0;
         private IntPtr offsetInBytes = IntPtr.Zero;
+        public IntPtr OffsetInBytes { get { return offsetInBytes; } }
 
         /// <summary>
         /// The offset into the element array buffer that this VAO begins.
@@ -492,7 +505,7 @@ namespace OpenGL
         /// <summary>
         /// The ShaderProgram associated with this VAO.
         /// </summary>
-        public Material Program { get; private set; }
+        public ShaderProgram Program { get; private set; }
 
         /// <summary>
         /// The drawing mode to use when drawing the arrays.
@@ -533,7 +546,7 @@ namespace OpenGL
             }
         }
 
-        public void BindAttributes(Material program)
+        public void BindAttributes(ShaderProgram program)
         {
             IGenericVBO elementArray = null;
 
@@ -546,7 +559,7 @@ namespace OpenGL
                     // To not break compatibility with previous versions of this call,
                     // int is allowed as an element type even though the specs don't allow it.
                     // All cases where int is used as the default element type have been marked obsolete
-                    // but until it's completely removed, this will serve to support that use case.
+                    //but until it's completely removed , this will serve to support that use case.
                     if (allowIntAsElementType && vbos[i].PointerType == VertexAttribPointerType.Int)
                     {
                         elementType = DrawElementsType.UnsignedInt;
@@ -562,13 +575,14 @@ namespace OpenGL
                     }
                     continue;
                 }
+                else if (vbos[i].BufferTarget == BufferTarget.DrawIndirectBuffer)
+                {
+                    continue;
+                }
 
                 // According to OGL spec then, if there is no location for an attribute, -1 is returned.
                 // The same error representation is used here.
-                
-                var p = program[vbos[i].Name];
-                
-                int loc = p?.Location ?? -1;
+                int loc = program[vbos[i].Name]?.Location ?? -1;
                 if (loc == -1) throw new Exception(string.Format("Shader did not contain '{0}'.", vbos[i].Name));
 
                 Gl.EnableVertexAttribArray((uint)loc);
@@ -608,9 +622,11 @@ namespace OpenGL
 
         public delegate void DrawFunc();
         public delegate void DrawInstancedFunc(int count);
+        public delegate void MultiDrawElementsIndirectFunc(VBO<DrawElementsIndirectCommand> cmdVBO, int cmdCount);
 
         public DrawFunc Draw;
         public DrawInstancedFunc DrawInstanced;
+        public MultiDrawElementsIndirectFunc MultiDrawElementsIndirect;
 
         /// <summary>
         /// OGL3 method uses a vertex array object for quickly binding the VBOs to their attributes.
@@ -653,10 +669,30 @@ namespace OpenGL
         }
 
         /// <summary>
+        /// OGL4 method uses a vertex array object for quickly binding the VBOs to their attributes.
+        /// </summary>
+        private void MultiDrawElementsIndirectOGL43(VBO<DrawElementsIndirectCommand> cmdVBO, int cmdCount)
+        {
+            if (ID == 0) return;
+            Gl.BindVertexArray(ID);
+            Gl.BindBuffer(cmdVBO);
+            Gl.MultiDrawElementsIndirect(DrawMode, elementType, IntPtr.Zero, cmdCount, 0);
+            Gl.BindVertexArray(0);
+        }
+
+        /// <summary>
+        /// OGL version does not support Gl.MultiDrawElementsIndirect.
+        /// </summary>
+        private void MultiDrawElementsIndirectOGLTooOld(VBO<DrawElementsIndirectCommand> cmdVBO, int cmdCount)
+        {
+            throw new Exception("The Function glMultiDrawElementsIndirect was first added in OpenGL 4.3 which is not supported on this system.");
+        }
+
+        /// <summary>
         /// Performs the draw routine with a custom shader program.
         /// </summary>
         /// <param name="program"></param>
-        public void DrawProgram(Material program)
+        public void DrawProgram(ShaderProgram program)
         {
             BindAttributes(program);
             Gl.DrawElements(DrawMode, VertexCount, elementType, offsetInBytes);
@@ -700,63 +736,63 @@ namespace OpenGL
     {
         #region Constructors and Destructor
         [Obsolete("Use VBO<uint> instead of VBO<int> as the element array buffer.")]
-        public VAO(Material program, VBO<Vector3> vertex, VBO<int> element)
+        public VAO(ShaderProgram program, VBO<Vector3> vertex, VBO<int> element)
             : this(program, vertex, null, null, null, element)
         {
         }
 
-        public VAO(Material program, VBO<Vector3> vertex, VBO<uint> element)
+        public VAO(ShaderProgram program, VBO<Vector3> vertex, VBO<uint> element)
             : this(program, vertex, null, null, null, element)
         {
         }
 
         [Obsolete("Use VBO<uint> instead of VBO<int> as the element array buffer.")]
-        public VAO(Material program, VBO<Vector3> vertex, VBO<Vector2> uv, VBO<int> element)
+        public VAO(ShaderProgram program, VBO<Vector3> vertex, VBO<Vector2> uv, VBO<int> element)
             : this(program, vertex, null, null, uv, element)
         {
         }
 
-        public VAO(Material program, VBO<Vector3> vertex, VBO<Vector2> uv, VBO<uint> element)
+        public VAO(ShaderProgram program, VBO<Vector3> vertex, VBO<Vector2> uv, VBO<uint> element)
             : this(program, vertex, null, null, uv, element)
         {
         }
 
         [Obsolete("Use VBO<uint> instead of VBO<int> as the element array buffer.")]
-        public VAO(Material program, VBO<Vector3> vertex, VBO<Vector3> normal, VBO<int> element)
+        public VAO(ShaderProgram program, VBO<Vector3> vertex, VBO<Vector3> normal, VBO<int> element)
             : this(program, vertex, normal, null, null, element)
         {
         }
 
-        public VAO(Material program, VBO<Vector3> vertex, VBO<Vector3> normal, VBO<uint> element)
+        public VAO(ShaderProgram program, VBO<Vector3> vertex, VBO<Vector3> normal, VBO<uint> element)
             : this(program, vertex, normal, null, null, element)
         {
         }
 
         [Obsolete("Use VBO<uint> instead of VBO<int> as the element array buffer.")]
-        public VAO(Material program, VBO<Vector3> vertex, VBO<Vector3> normal, VBO<Vector2> uv, VBO<int> element)
+        public VAO(ShaderProgram program, VBO<Vector3> vertex, VBO<Vector3> normal, VBO<Vector2> uv, VBO<int> element)
             : this(program, vertex, normal, null, uv, element)
         {
         }
 
-        public VAO(Material program, VBO<Vector3> vertex, VBO<Vector3> normal, VBO<Vector2> uv, VBO<uint> element)
+        public VAO(ShaderProgram program, VBO<Vector3> vertex, VBO<Vector3> normal, VBO<Vector2> uv, VBO<uint> element)
             : this(program, vertex, normal, null, uv, element)
         {
         }
 
         [Obsolete("Use VBO<uint> instead of VBO<int> as the element array buffer.")]
-        public VAO(Material program, VBO<Vector3> vertex, VBO<Vector3> normal, VBO<Vector3> tangent, VBO<Vector2> uv, VBO<int> element)
+        public VAO(ShaderProgram program, VBO<Vector3> vertex, VBO<Vector3> normal, VBO<Vector3> tangent, VBO<Vector2> uv, VBO<int> element)
             : base(program, true)
         {
             InitDefaultVAO(vertex, normal, tangent, uv, element);
         }
 
-        public VAO(Material program, VBO<Vector3> vertex, VBO<Vector3> normal, VBO<Vector3> tangent, VBO<Vector2> uv, VBO<uint> element)
+        public VAO(ShaderProgram program, VBO<Vector3> vertex, VBO<Vector3> normal, VBO<Vector3> tangent, VBO<Vector2> uv, VBO<uint> element)
             : base(program, false)
         {
             InitDefaultVAO(vertex, normal, tangent, uv, element);
         }
 
-        public VAO(Material program, IGenericVBO[] vbos)
+        public VAO(ShaderProgram program, IGenericVBO[] vbos)
             : base(program, false)
         {
             Init(vbos);
