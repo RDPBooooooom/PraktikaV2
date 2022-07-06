@@ -1,11 +1,10 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using OpenGL;
 using OpenGL.Game;
-using OpenGL.Game.Math;
+using OpenGL.Game.Shapes;
 using OpenGL.Platform;
 
-namespace SAE.OpenGL.P6
+namespace SAE.OpenGL.P7
 {
     internal static class Program
     {
@@ -16,13 +15,18 @@ namespace SAE.OpenGL.P6
         private static Game game;
         private static Camera camera;
 
+        private static bool useAddition = true;
+        private static bool disableWiggle = true;
+        private static float amp = 1.0f;
+        private static float frequency = 1.0f;
+
         static void Main()
         {
             game = new Game();
             camera = new Camera();
 
             Time.Init();
-            Window.CreateWindow("OpenGL P6", 800, 600);
+            Window.CreateWindow("OpenGL P7", 800, 600);
 
             // add a reshape callback to update the UI
             Window.OnReshapeCallbacks.Add(OnResize);
@@ -38,6 +42,11 @@ namespace SAE.OpenGL.P6
             Gl.ActiveTexture(1);
             Texture crateTexture = new Texture("..\\textures\\crate.jpg");
             Gl.BindTexture(crateTexture);
+            
+            // Scale up (magnify)
+            Gl.TexParameteri(crateTexture.TextureTarget, TextureParameterName.TextureMagFilter, TextureParameter.Linear);
+            // Scale down (minify)
+            Gl.TexParameteri(crateTexture.TextureTarget, TextureParameterName.TextureMinFilter, TextureParameter.Linear);
 
             // Load shader files
             ShaderProgram material =
@@ -82,21 +91,46 @@ namespace SAE.OpenGL.P6
                 }
             };
 
+            MeshRenderer renderer = new MeshRenderer(textureMaterial, crateTexture,
+                GameObject.GetVao(Shapes.VerticesTextureRectangle, Shapes.IndicesTextureRectangle,
+                    Shapes.ColorsTextureRectangle, Shapes.UvTextureRectangle, textureMaterial));
+            
+            GameObject plane = new GameObject("MyPlane", renderer)
+            {
+                Transform = new Transform()
+                {
+                    Position = new Vector3(0, 0, -3.2f)
+                }
+            };
+
             //Add to scene
             game.SceneGraph.Add(cube);
             game.SceneGraph.Add(cube2);
             game.SceneGraph.Add(obj);
+            game.SceneGraph.Add(plane);
 
             // Hook to the escape press event using the OpenGL.UI class library
             Input.Subscribe((char) Keys.Escape, Window.OnClose);
 
             Input.Subscribe('f', SwapPolygonModeFill);
             Input.Subscribe('l', SwapPolygonModeLine);
+            Input.Subscribe('k', SwapTextParamLinear);
+            Input.Subscribe('g', SwapTextParamNearest);
+            Input.Subscribe('b', SwapAddition);
+            Input.Subscribe('v', SwapWiggle);
+            
+            Input.Subscribe('.', IncreaseFreq);
+            Input.Subscribe('-', DecreaseFreq);
+            Input.Subscribe('z', IncreaseAmp);
+            Input.Subscribe('u', DecreaseAmp);
 
             // Make sure to set up mouse event handlers for the window
             Window.OnMouseCallbacks.Add(global::OpenGL.UI.UserInterface.OnMouseClick);
             Window.OnMouseMoveCallbacks.Add(global::OpenGL.UI.UserInterface.OnMouseMove);
 
+
+            float time = 0;
+            
             // Game loop
             while (Window.Open)
             {
@@ -111,10 +145,16 @@ namespace SAE.OpenGL.P6
                 Matrix4 view = camera.Transform.GetRts();
                 Matrix4 projection = GetProjectionMatrix();
 
+                textureMaterial["time"]?.SetValue(time);
+                textureMaterial["useAddition"]?.SetValue(useAddition);
+                textureMaterial["disableWiggle"]?.SetValue(disableWiggle);
+                textureMaterial["a"]?.SetValue(amp);
+                textureMaterial["f"]?.SetValue(frequency);
                 game.SceneGraph.ForEach(g => Render(g, view, projection));
 
                 OnPostRenderFrame();
 
+                time += Time.DeltaTime;
                 Time.Update();
             }
         }
@@ -146,6 +186,51 @@ namespace SAE.OpenGL.P6
 
         #region Callbacks
 
+        private static void IncreaseFreq()
+        {
+            frequency += 0.5f;
+        }
+        
+        private static void DecreaseFreq()
+        {
+            frequency -= 0.5f;
+        }
+        
+        private static void IncreaseAmp()
+        {
+            amp += 0.5f;
+        }
+        
+        private static void DecreaseAmp()
+        {
+            amp -= 0.5f;
+        }
+        
+        private static void SwapWiggle()
+        {
+            disableWiggle = !disableWiggle;
+        }
+        private static void SwapAddition()
+        {
+            useAddition = !useAddition;
+        }
+        
+        private static void SwapTextParamLinear()
+        {
+            // Scale up (magnify)
+            Gl.TexParameteri(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, TextureParameter.Linear);
+            // Scale down (minify)
+            Gl.TexParameteri(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, TextureParameter.Linear);
+
+        }
+        
+        private static void SwapTextParamNearest()
+        {
+            // Scale up (magnify)
+            Gl.TexParameteri(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, TextureParameter.Nearest);
+            // Scale down (minify)
+            Gl.TexParameteri(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, TextureParameter.Nearest);
+        }
         private static void SwapPolygonModeLine()
         {
             Gl.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);

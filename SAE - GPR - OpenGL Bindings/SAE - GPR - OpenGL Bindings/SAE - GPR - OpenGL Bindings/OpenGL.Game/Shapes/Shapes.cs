@@ -305,6 +305,44 @@
 
         #endregion
 
+        #region Texture Rectangle
+
+        
+        public static readonly Vector3[] VerticesTextureRectangle =
+        {
+            new Vector3(-0.7f, -0.5f, 1.0f), // left_down
+            new Vector3(0.7f, -0.5f, 1.0f), // right_down
+            new Vector3(0.7f, 0.5f, 1.0f), // right_top
+            new Vector3(-0.7f, 0.5f, 1.0f), // left_top
+        };
+
+        public static readonly uint[] IndicesTextureRectangle =
+        {
+            0, 2, 1,
+            0, 2, 3
+        };
+
+
+        public static readonly Vector3[] ColorsTextureRectangle =
+        {
+            //One Side
+            new Vector3(1f, 0f, 0f),
+            new Vector3(0f, 1f, 0f),
+            new Vector3(0f, 0f, 1f),
+            new Vector3(1f, 1f, 1f),
+        };
+
+        public static readonly Vector2[] UvTextureRectangle =
+        {
+            new Vector2(0,0),
+            new Vector2(1,0),
+            new Vector2(1,1),
+            new Vector2(0,1)
+        };
+        
+
+        #endregion
+
         #region Triangle
 
         public static readonly Vector3[] VerticesTriangle =

@@ -45,19 +45,19 @@ namespace OpenGL.Game
 
         public void Render(Matrix4 view, Matrix4 projection)
         {
-            Renderer.Render(Transform.GetRst(), view, projection );
+            Renderer.Render(Transform.GetTrs(), view, projection );
         }
 
         #endregion
 
         #region Protected Methods
 
-        protected static VAO GetVao(Vector3[] vertices, uint[] indices, Vector3[] colors, ShaderProgram mat)
+        public static VAO GetVao(Vector3[] vertices, uint[] indices, Vector3[] colors, ShaderProgram mat)
         {
             return GetVao(vertices, indices, colors, null, mat);
         }
 
-        protected static VAO GetVao(Vector3[] vertices, uint[] indices, Vector3[] colors, Vector2[] uv, ShaderProgram mat)
+        public static VAO GetVao(Vector3[] vertices, uint[] indices, Vector3[] colors, Vector2[] uv, ShaderProgram mat)
 
         {
             List<IGenericVBO> vbos = new List<IGenericVBO>
