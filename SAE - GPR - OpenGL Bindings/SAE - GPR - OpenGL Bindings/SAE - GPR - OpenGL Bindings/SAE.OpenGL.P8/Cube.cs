@@ -1,5 +1,6 @@
 ﻿using OpenGL;
 using OpenGL.Game;
+using OpenGL.Game.Math;
 using OpenGL.Game.Shapes;
 using OpenGL.Platform;
 
@@ -29,7 +30,7 @@ namespace SAE.OpenGL.P8
             _uvFactor = 1;
 
             _mat = mat;
-            _mat["uv_factor"].SetValue(_uvFactor);
+            _mat["uv_factor"]?.SetValue(_uvFactor);
 
             Renderer = new MeshRenderer(_mat, texture,
                 GetVao(Shapes.VerticesTextureCube, Shapes.IndicesTextureCube, Shapes.ColorsTextureCube,

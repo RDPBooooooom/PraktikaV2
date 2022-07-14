@@ -63,11 +63,16 @@ namespace OpenGL.Game
             List<IGenericVBO> vbos = new List<IGenericVBO>
             {
                 new GenericVAO.GenericVBO<Vector3>(new VBO<Vector3>(vertices), "in_position"),
-                new GenericVAO.GenericVBO<Vector3>(new VBO<Vector3>(colors), "in_color"),
+                
                 new GenericVAO.GenericVBO<uint>(new VBO<uint>(indices,
                     BufferTarget.ElementArrayBuffer,
                     BufferUsageHint.StaticRead))
             };
+
+            if (mat["in_color"] != null)
+            {
+                vbos.Add(new GenericVAO.GenericVBO<Vector3>(new VBO<Vector3>(colors), "in_color"));
+            }
 
             if (uv != null && mat["uv"] != null)
                 vbos.Add(new GenericVAO.GenericVBO<Vector2>(new VBO<Vector2>(uv), "uv"));

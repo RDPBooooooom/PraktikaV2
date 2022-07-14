@@ -1,6 +1,9 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Diagnostics;
+using System.Windows.Forms;
 using OpenGL;
 using OpenGL.Game;
+using OpenGL.Game.Math;
 using OpenGL.Game.Shapes;
 using OpenGL.Platform;
 
@@ -17,8 +20,17 @@ namespace SAE.OpenGL.P8
 
         private static bool useAddition = true;
         private static bool disableWiggle = true;
+
+        private static bool useBrightness = false;
+        private static bool useContrast = false;
+        private static bool useGrayscale = false;
+
         private static float amp = 1.0f;
         private static float frequency = 1.0f;
+
+        private static float hue = 0f;
+        private static float sat = 0f;
+        private static float value = 0f;
 
         static void Main()
         {
@@ -42,11 +54,13 @@ namespace SAE.OpenGL.P8
             Gl.ActiveTexture(1);
             Texture crateTexture = new Texture("..\\textures\\crate.jpg");
             Gl.BindTexture(crateTexture);
-            
+
             // Scale up (magnify)
-            Gl.TexParameteri(crateTexture.TextureTarget, TextureParameterName.TextureMagFilter, TextureParameter.Linear);
+            Gl.TexParameteri(crateTexture.TextureTarget, TextureParameterName.TextureMagFilter,
+                TextureParameter.Linear);
             // Scale down (minify)
-            Gl.TexParameteri(crateTexture.TextureTarget, TextureParameterName.TextureMinFilter, TextureParameter.Linear);
+            Gl.TexParameteri(crateTexture.TextureTarget, TextureParameterName.TextureMinFilter,
+                TextureParameter.Linear);
 
             // Load shader files
             ShaderProgram material =
@@ -54,12 +68,13 @@ namespace SAE.OpenGL.P8
                     ShaderUtil.CreateShader("..\\shaders\\frag_old.fs", ShaderType.FragmentShader));
             material["color"].SetValue(new Vector3(1, 1, 1));
 
-            ShaderProgram textureMaterial =  new ShaderProgram(ShaderUtil.CreateShader("..\\shaders\\vert.vs", ShaderType.VertexShader),
+            ShaderProgram textureMaterial = new ShaderProgram(
+                ShaderUtil.CreateShader("..\\shaders\\vert.vs", ShaderType.VertexShader),
                 ShaderUtil.CreateShader("..\\shaders\\frag.fs", ShaderType.FragmentShader));
-            textureMaterial["color"].SetValue(new Vector3(1, 1, 1));
-            textureMaterial["baseColorMap"].SetValue(1);
-            
-            
+            textureMaterial["color"]?.SetValue(new Vector3(1, 1, 1));
+            textureMaterial["baseColorMap"]?.SetValue(1);
+
+
             SwapPolygonModeFill();
 
             //Create game object
@@ -71,7 +86,7 @@ namespace SAE.OpenGL.P8
                     Position = new Vector3(5, 0, -10f)
                 }
             };
-            
+
             Cube cube = new Cube("myCube", textureMaterial, crateTexture)
             {
                 Transform = new Transform()
@@ -80,13 +95,13 @@ namespace SAE.OpenGL.P8
                     Rotation = new Vector3(0, 0, 45)
                 }
             };
-            
+
             Cube cube2 = new Cube("myCube2", textureMaterial, crateTexture)
             {
                 Transform = new Transform()
                 {
                     Position = new Vector3(-5, 0, -10f),
-                    Scale = new Vector3(2,2,2),
+                    Scale = new Vector3(2, 2, 2),
                     Rotation = new Vector3(30, 30, 30)
                 }
             };
@@ -94,7 +109,7 @@ namespace SAE.OpenGL.P8
             MeshRenderer renderer = new MeshRenderer(textureMaterial, crateTexture,
                 GameObject.GetVao(Shapes.VerticesTextureRectangle, Shapes.IndicesTextureRectangle,
                     Shapes.ColorsTextureRectangle, Shapes.UvTextureRectangle, textureMaterial));
-            
+
             GameObject plane = new GameObject("MyPlane", renderer)
             {
                 Transform = new Transform()
@@ -118,11 +133,22 @@ namespace SAE.OpenGL.P8
             Input.Subscribe('g', SwapTextParamNearest);
             Input.Subscribe('b', SwapAddition);
             Input.Subscribe('v', SwapWiggle);
-            
+
             Input.Subscribe('.', IncreaseFreq);
             Input.Subscribe('-', DecreaseFreq);
             Input.Subscribe('z', IncreaseAmp);
             Input.Subscribe('u', DecreaseAmp);
+
+            Input.Subscribe('Q', SwapBrightness);
+            Input.Subscribe('W', SwapContrast);
+            Input.Subscribe('E', SwapGrayscale);
+
+            Input.Subscribe('A', IncreaseHue);
+            Input.Subscribe('Y', DecreaseHue);
+            Input.Subscribe('S', IncreaseSat);
+            Input.Subscribe('X', DecreaseSat);
+            Input.Subscribe('D', IncreaseValue);
+            Input.Subscribe('C', DecreaseValue);
 
             // Make sure to set up mouse event handlers for the window
             Window.OnMouseCallbacks.Add(global::OpenGL.UI.UserInterface.OnMouseClick);
@@ -130,7 +156,7 @@ namespace SAE.OpenGL.P8
 
 
             float time = 0;
-            
+
             // Game loop
             while (Window.Open)
             {
@@ -150,6 +176,17 @@ namespace SAE.OpenGL.P8
                 textureMaterial["disableWiggle"]?.SetValue(disableWiggle);
                 textureMaterial["a"]?.SetValue(amp);
                 textureMaterial["f"]?.SetValue(frequency);
+
+                float r = Mathf.Sin(time);
+                textureMaterial["brightness"]?.SetValue(useBrightness ? r : 0);
+                textureMaterial["contrast"]?.SetValue(useContrast ? r : 0);
+                textureMaterial["grayscale"]?.SetValue(useGrayscale ? Math.Abs(r) : 0);
+
+                textureMaterial["hue"]?.SetValue(hue);
+                textureMaterial["sat"]?.SetValue(sat);
+                textureMaterial["value"]?.SetValue(value);
+
+
                 game.SceneGraph.ForEach(g => Render(g, view, projection));
 
                 OnPostRenderFrame();
@@ -164,7 +201,6 @@ namespace SAE.OpenGL.P8
 
         private static void Render(GameObject obj, Matrix4 view, Matrix4 projection)
         {
-
             //--------------------------
             // Data passing to shader
             //--------------------------
@@ -190,40 +226,85 @@ namespace SAE.OpenGL.P8
         {
             frequency += 0.5f;
         }
-        
+
         private static void DecreaseFreq()
         {
             frequency -= 0.5f;
         }
-        
+
         private static void IncreaseAmp()
         {
             amp += 0.5f;
         }
-        
+
         private static void DecreaseAmp()
         {
             amp -= 0.5f;
         }
-        
+
+        private static void IncreaseHue()
+        {
+            hue += 1f;
+        }
+
+        private static void DecreaseHue()
+        {
+            hue -= 1f;
+        }
+
+        private static void IncreaseSat()
+        {
+            sat = Math.Clamp(sat + 0.05f, -1f, 1f);
+        }
+
+        private static void DecreaseSat()
+        {
+            sat = Math.Clamp(sat - 0.05f, -1f, 1f);
+        }
+
+        private static void IncreaseValue()
+        {
+            value = Math.Clamp(value + 0.05f, -1f, 1f);
+        }
+
+        private static void DecreaseValue()
+        {
+            value = Math.Clamp(value - 0.05f, -1f, 1f);
+        }
+
         private static void SwapWiggle()
         {
             disableWiggle = !disableWiggle;
         }
+
         private static void SwapAddition()
         {
             useAddition = !useAddition;
         }
-        
+
+        private static void SwapBrightness()
+        {
+            useBrightness = !useBrightness;
+        }
+
+        private static void SwapContrast()
+        {
+            useContrast = !useContrast;
+        }
+
+        private static void SwapGrayscale()
+        {
+            useGrayscale = !useGrayscale;
+        }
+
         private static void SwapTextParamLinear()
         {
             // Scale up (magnify)
             Gl.TexParameteri(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, TextureParameter.Linear);
             // Scale down (minify)
             Gl.TexParameteri(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, TextureParameter.Linear);
-
         }
-        
+
         private static void SwapTextParamNearest()
         {
             // Scale up (magnify)
@@ -231,6 +312,7 @@ namespace SAE.OpenGL.P8
             // Scale down (minify)
             Gl.TexParameteri(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, TextureParameter.Nearest);
         }
+
         private static void SwapPolygonModeLine()
         {
             Gl.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
@@ -288,7 +370,6 @@ namespace SAE.OpenGL.P8
                 // do other picking code here if necessary
             }
         }
-
         #endregion
     }
 }
