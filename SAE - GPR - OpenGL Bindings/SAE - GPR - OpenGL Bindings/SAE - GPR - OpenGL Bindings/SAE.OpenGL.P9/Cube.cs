@@ -32,7 +32,7 @@ namespace SAE.OpenGL.P9
             _mat["uv_factor"]?.SetValue(_uvFactor);
 
             Renderer = new MeshRenderer(_mat, texture,
-                GetVao(Shapes.VerticesTextureCube, Shapes.IndicesTextureCube, Shapes.ColorsTextureCube,
+                GetVao(Shapes.VerticesTextureCube, Shapes.IndicesTextureCube, Shapes.VerticesNormalsTextureCube, Shapes.ColorsTextureCube,
                     Shapes.UvTextureCube, _mat));
 
             Input.Subscribe('m', UvSizeUp);
@@ -42,6 +42,7 @@ namespace SAE.OpenGL.P9
         public override void Update()
         {
             _timeSinceStart += Time.DeltaTime;
+            Transform.Rotation += Time.DeltaTime * 10;
         }
 
         private void UvSizeUp()

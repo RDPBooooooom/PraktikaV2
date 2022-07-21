@@ -1,4 +1,8 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003Afrag_002Efs_002Fl_003ASAE_002EOpenGL_002EP9_003Fbin_003FDebug_003Fshaders_003Ffrag_002Efs/@EntryIndexedValue">ExplicitlyExcluded</s:String>
+	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=2875a309_002Da1b9_002D4cf3_002D97cd_002Daf8c5e1d22b2_0023SAE_002EOpenGL_002EP7/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=9db6dc68_002D94d6_002D46e9_002D8d8c_002D290ddd5eec35_0023SAE_002EOpenGL_002EP6/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=9f713e31_002D99c2_002D4419_002D8d81_002Dd835628aca71_0023SAE_002EOpenGL_002EP8/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=aa1a6c88_002Db8cc_002D45f9_002D9b75_002D80f76e91e80a_0023SAE_002EOpenGL_002EP4/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=e7bbc890_002D649f_002D40f6_002D8934_002D2db86528d145_0023SAE_002EOpenGL_002EP5/@EntryIndexedValue">True</s:Boolean>
 	</wpf:ResourceDictionary>

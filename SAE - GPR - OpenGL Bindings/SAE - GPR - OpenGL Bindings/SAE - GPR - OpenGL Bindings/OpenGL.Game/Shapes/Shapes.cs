@@ -275,6 +275,42 @@
             new Vector2(0f, 0f),
         };
 
+        public static readonly Vector3[] VerticesNormalsTextureCube =
+        {
+            // front_top_Left 0
+            new Vector3(0, 0, -1), // 0
+            new Vector3(0, 1, 0), // 1
+            new Vector3(-1, 0, 0), // 2
+            //front_top_right 1
+            new Vector3(0, 0, -1), // 3
+            new Vector3(0, 1, 0), // 4
+            new Vector3(1, 0, 0), // 5
+            // front_bot_left 2
+            new Vector3(0, 0, -1), // 6
+            new Vector3(0, -1, 0), // 7
+            new Vector3(-1, 0, 0), // 8
+            // front_bot_right 3
+            new Vector3(0, 0, -1), // 9
+            new Vector3(0, -1, 0), // 10
+            new Vector3(1, 0, 0), // 11
+            // back_top_left 4
+            new Vector3(0, 1, 0), // 12
+            new Vector3(-1, 0, 0), // 13
+            new Vector3(0, 0, 1), // 14
+            // back_top_right 5
+            new Vector3(0, 1, 0), // 15
+            new Vector3(1, 0, 0), // 16
+            new Vector3(0, 0, 1), // 17
+            // back_bot_left 6
+            new Vector3(0, -1, 0), // 18
+            new Vector3(-1, 0, 0), // 19
+            new Vector3(0, 0, 1), // 20
+            // back_bot_right 7
+            new Vector3(0, -1, 0), // 21
+            new Vector3(1, -0, 0), // 22
+            new Vector3(0, 0, 1), // 23
+        };
+
         #endregion
 
         #region Rectangle
@@ -307,7 +343,6 @@
 
         #region Texture Rectangle
 
-        
         public static readonly Vector3[] VerticesTextureRectangle =
         {
             new Vector3(-0.7f, -0.5f, 1.0f), // left_down
@@ -334,12 +369,11 @@
 
         public static readonly Vector2[] UvTextureRectangle =
         {
-            new Vector2(0,0),
-            new Vector2(1,0),
-            new Vector2(1,1),
-            new Vector2(0,1)
+            new Vector2(0, 0),
+            new Vector2(1, 0),
+            new Vector2(1, 1),
+            new Vector2(0, 1)
         };
-        
 
         #endregion
 

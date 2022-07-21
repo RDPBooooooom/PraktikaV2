@@ -34,12 +34,16 @@ namespace OpenGL.Game
 
         #region Public Methods
 
-        public void Render(Matrix4 model, Matrix4 view, Matrix4 projection)
+        public void Render(Matrix4 model, Matrix4 view, Matrix4 projection, Matrix4 lightData)
         {
+            Matrix4 tangentToWorld = model.Inverse().Transpose();
+            
             Geometry.Program.Use();
             Material["projection"].SetValue(projection);
             Material["view"].SetValue(view);
             Material["model"].SetValue(model);
+            Material["tangentToWorld"]?.SetValue(tangentToWorld);
+            Material["light"]?.SetValue(lightData);
             Geometry.Draw();
         }
 

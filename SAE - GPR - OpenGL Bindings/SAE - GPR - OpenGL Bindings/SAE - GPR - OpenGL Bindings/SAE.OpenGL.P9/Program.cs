@@ -16,6 +16,7 @@ namespace SAE.OpenGL.P9
         //TODO: Create game instance
         private static Game game;
         private static Camera camera;
+        private static Light light;
 
         private static bool useAddition = true;
         private static bool disableWiggle = true;
@@ -23,6 +24,9 @@ namespace SAE.OpenGL.P9
         private static bool useBrightness = false;
         private static bool useContrast = false;
         private static bool useGrayscale = false;
+        
+        private static bool useDirectional = false;
+        private static bool useBlinn = false;
 
         private static float amp = 1.0f;
         private static float frequency = 1.0f;
@@ -35,6 +39,29 @@ namespace SAE.OpenGL.P9
         {
             game = new Game();
             camera = new Camera();
+            light = new Light(0.2f, 2f, 4f, 128, new Vector3(1, 1, 1), new Vector3(1, 0, 0))
+            {
+                Position =
+                {
+                    Position = new Vector3(-2.5f, 2, -10)
+                }
+            };
+
+
+            /*for (int i = 0; i < Shapes.IndicesTextureCube.Length; i += 3)
+            {
+                Vector3 a = Shapes.VerticesTextureCube[Shapes.IndicesTextureCube[i]];
+                Vector3 b = Shapes.VerticesTextureCube[Shapes.IndicesTextureCube[i + 1]];
+                Vector3 c = Shapes.VerticesTextureCube[Shapes.IndicesTextureCube[i + 2]];
+
+                Vector3 n = Vector3.Normalize(Vector3.Cross(b - a, c - a));
+
+                Console.WriteLine("new Vector3({0}, {1}, {2}), // {3}", n.X, n.Y, n.Z, Shapes.IndicesTextureCube[i]);
+                Console.WriteLine("new Vector3({0}, {1}, {2}), // {3}", n.X, n.Y, n.Z,
+                    Shapes.IndicesTextureCube[i + 1]);
+                Console.WriteLine("new Vector3({0}, {1}, {2}), // {3}", n.X, n.Y, n.Z,
+                    Shapes.IndicesTextureCube[i + 2]);
+            }*/
 
             Time.Init();
             Window.CreateWindow("OpenGL P9", 800, 600);
@@ -91,7 +118,7 @@ namespace SAE.OpenGL.P9
                 Transform = new Transform()
                 {
                     Position = new Vector3(0, 0, -10f),
-                    Rotation = new Vector3(0, 0, 45)
+                    //Rotation = new Vector3(0, 0, 45)
                 }
             };
 
@@ -101,7 +128,7 @@ namespace SAE.OpenGL.P9
                 {
                     Position = new Vector3(-5, 0, -10f),
                     Scale = new Vector3(2, 2, 2),
-                    Rotation = new Vector3(30, 30, 30)
+                    //Rotation = new Vector3(30, 30, 30)
                 }
             };
 
@@ -148,6 +175,9 @@ namespace SAE.OpenGL.P9
             Input.Subscribe('X', DecreaseSat);
             Input.Subscribe('D', IncreaseValue);
             Input.Subscribe('C', DecreaseValue);
+            
+            Input.Subscribe('R', SwapDirectional);
+            Input.Subscribe('T', SwapBlinn);
 
             // Make sure to set up mouse event handlers for the window
             Window.OnMouseCallbacks.Add(global::OpenGL.UI.UserInterface.OnMouseClick);
@@ -184,9 +214,13 @@ namespace SAE.OpenGL.P9
                 textureMaterial["hue"]?.SetValue(hue);
                 textureMaterial["sat"]?.SetValue(sat);
                 textureMaterial["value"]?.SetValue(value);
+                
+                textureMaterial["directional"]?.SetValue(useDirectional);
+                textureMaterial["blinn"]?.SetValue(useBlinn);
 
-
-                game.SceneGraph.ForEach(g => Render(g, view, projection));
+                Matrix4 lightData = light.GetLightData(camera);
+                
+                game.SceneGraph.ForEach(g => g.Render(view, projection, lightData));
 
                 OnPostRenderFrame();
 
@@ -197,15 +231,6 @@ namespace SAE.OpenGL.P9
 
 
         #region Transformation
-
-        private static void Render(GameObject obj, Matrix4 view, Matrix4 projection)
-        {
-            //--------------------------
-            // Data passing to shader
-            //--------------------------
-            obj.Render(view, projection);
-        }
-
         private static Matrix4 GetProjectionMatrix()
         {
             float fov = 60f;
@@ -274,6 +299,15 @@ namespace SAE.OpenGL.P9
         private static void SwapWiggle()
         {
             disableWiggle = !disableWiggle;
+        }
+        
+        private static void SwapBlinn()
+        {
+            useBlinn = !useBlinn;
+        }
+        private static void SwapDirectional()
+        {
+            useDirectional = !useDirectional;
         }
 
         private static void SwapAddition()
@@ -369,6 +403,7 @@ namespace SAE.OpenGL.P9
                 // do other picking code here if necessary
             }
         }
+
         #endregion
     }
 }
