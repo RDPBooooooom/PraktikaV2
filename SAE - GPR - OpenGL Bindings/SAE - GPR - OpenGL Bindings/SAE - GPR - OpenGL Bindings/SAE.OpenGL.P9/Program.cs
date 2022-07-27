@@ -39,7 +39,7 @@ namespace SAE.OpenGL.P9
         {
             game = new Game();
             camera = new Camera();
-            light = new Light(0.2f, 2f, 4f, 128, new Vector3(1, 1, 1), new Vector3(1, 0, 0))
+            light = new Light(0.2f, 2f, 4f, 128, new Vector3(1, 1, 1), new Vector3(1, 1, 1))
             {
                 Position =
                 {
